@@ -83,9 +83,13 @@
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},
-      "cordova-plugin-advanced-http": {},
+      "cordova-plugin-advanced-http": {
+        "ANDROIDBLACKLISTSECURESOCKETPROTOCOLS": "SSLv3,TLSv1"
+      },
       "cordova-plugin-file": {},
-      "cordova-plugin-camera": {},
+      "cordova-plugin-camera": {
+        "ANDROIDX_CORE_VERSION": "1.6.+"
+      },
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-background-mode": {},
       "cordova-plugin-statusbar": {},

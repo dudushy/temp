@@ -6,12 +6,12 @@ import { AppComponent } from 'src/app/app.component';
 import { Platform } from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class HomePage implements OnInit {
-  title = 'home';
+export class LoginPage implements OnInit {
+  title = 'login';
 
   constructor(
     public app: AppComponent,

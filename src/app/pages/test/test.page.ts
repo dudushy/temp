@@ -3,17 +3,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { AppComponent } from 'src/app/app.component';
 
-import { SyncService } from 'src/app/services/sync/sync.service';
-
 import { Platform } from '@ionic/angular';
-
-import { DbService } from 'src/app/services/db/db.service';
-
-import { EventsService } from 'src/app/services/events/events.service';
-
-// import { HTTP } from '@awesome-cordova-plugins/http/ngx'; //! UNUSED
-
-// import { File } from '@awesome-cordova-plugins/file/ngx'; //! UNUSED
 
 @Component({
   selector: 'app-test',
@@ -25,13 +15,8 @@ export class TestPage implements OnInit {
 
   constructor(
     public app: AppComponent,
-    public sync: SyncService,
     public platform: Platform,
     private cdr: ChangeDetectorRef,
-    public db: DbService,
-    private events: EventsService,
-    // private http: HTTP,
-    // private file: File,
   ) {
     console.log(`[${this.title}#constructor]`);
   }
@@ -60,5 +45,10 @@ export class TestPage implements OnInit {
 
   redirectTo(url: string) {
     this.app.redirectTo(this.title, url);
+  }
+
+  async takePicture() {
+    const pic = this.app.takePhoto('test');
+    console.log(`[${this.title}#takePicture] pic:`, pic);
   }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
+import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx'; //? TEMP
 
 import { Platform } from '@ionic/angular';
 
@@ -17,7 +17,7 @@ export class DbService {
   DB_NAME = 'template';
 
   constructor(
-    private sqlite: SQLite,
+    private sqlite: SQLite,  //? TEMP
     public platform: Platform
   ) {
     console.log(`[${this.title}#constructor]`);
@@ -43,6 +43,8 @@ export class DbService {
     const query = 'SELECT name FROM sqlite_master WHERE type="table" ORDER BY name;';
     // const query = 'SELECT name FROM sqlite_schema WHERE type ="table" AND name NOT LIKE "sqlite_%";';
     console.log(`[${this.title}#listAllTables] query`, [query]);
+
+    // return null; //? TEMP
 
     return await new Promise(resolve => {
       const connection = this.sqlite.create({
@@ -77,6 +79,8 @@ export class DbService {
 
   async query(query: any): Promise<any> {
     console.log(`[${this.title}#query] query`, [query]);
+
+    // return null; //? TEMP
 
     return await new Promise(resolve => {
       const connection = this.sqlite.create({
@@ -116,6 +120,8 @@ export class DbService {
     const query = `DROP TABLE IF EXISTS "tb_${table}";`;
     console.log(`[${this.title}#dropTable] {${from}} query`, [query]);
 
+    // return null; //? TEMP
+
     return await new Promise(resolve => {
       const connection = this.sqlite.create({
         name: `${this.DB_NAME}_${this.APP_VERSION}.db`,
@@ -149,6 +155,8 @@ export class DbService {
       ');';
     console.log(`[${this.title}#createTbUser] query`, [query]);
 
+    // return null; //? TEMP
+
     return await new Promise(resolve => {
       const connection = this.sqlite.create({
         name: `${this.DB_NAME}_${this.APP_VERSION}.db`,
@@ -177,6 +185,8 @@ export class DbService {
   async selectTbUser(id: any): Promise<any> {
     const query = id == '*' ? 'SELECT * FROM "tb_user"' : `SELECT * FROM "tb_user" WHERE id = "${id}"`;
     console.log(`[${this.title}#selectTbUser] query`, [query]);
+
+    // return null; //? TEMP
 
     return await new Promise(resolve => {
       const connection = this.sqlite.create({
@@ -225,6 +235,8 @@ export class DbService {
 
     console.log(`[${this.title}#setTbUser] {${from}} query`, [query]);
 
+    // return null; //? TEMP
+
     return await new Promise(resolve => {
       const connection = this.sqlite.create({
         name: `${this.DB_NAME}_${this.APP_VERSION}.db`,
@@ -253,6 +265,8 @@ export class DbService {
   async get(table: any, id: any, from: any): Promise<any> {
     const query = id == '*' ? `SELECT * FROM "tb_${table}"` : `SELECT * FROM "tb_${table}" WHERE id = "${id}"`;
     console.log(`[${this.title}#get] {${from}} query`, [query]);
+
+    // return null; //? TEMP
 
     return await new Promise(resolve => {
       const connection = this.sqlite.create({
@@ -295,6 +309,8 @@ export class DbService {
       ');';
     console.log(`[${this.title}#createTbVars] query`, [query]);
 
+    // return null; //? TEMP
+
     return await new Promise(resolve => {
       const connection = this.sqlite.create({
         name: `${this.DB_NAME}_${this.APP_VERSION}.db`,
@@ -336,6 +352,8 @@ export class DbService {
 
     console.log(`[${this.title}#setVar] {${from}} query`, [query]);
 
+    // return null; //? TEMP
+
     return await new Promise(resolve => {
       const connection = this.sqlite.create({
         name: `${this.DB_NAME}_${this.APP_VERSION}.db`,
@@ -366,39 +384,41 @@ export class DbService {
 
     console.log(`[${this.title}#getVar] {${from}} query`, [query]);
 
-    return await new Promise(resolve => {
-      const connection = this.sqlite.create({
-        name: `${this.DB_NAME}_${this.APP_VERSION}.db`,
-        location: 'default'
-      });
-      if (!connection) { console.log(`[${this.title}#getVar/connection] error`, connection); resolve(connection); }
-      connection
-        .then((db: SQLiteObject) => {
-          db.executeSql(query, [])
-            .then((data) => {
-              let result = [];
-              for (let item = 0; item < data.rows.length; item++) {
-                // console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ` | data.rows.item(${item})`, data.rows.item(item));
-                result.push(data.rows.item(item));
-              }
+    return null; //? TEMP
 
-              if (var_name != '*') {
-                result = JSON.parse(result[0].var_value);
-              }
+    // return await new Promise(resolve => {
+    //   const connection = this.sqlite.create({
+    //     name: `${this.DB_NAME}_${this.APP_VERSION}.db`,
+    //     location: 'default'
+    //   });
+    //   if (!connection) { console.log(`[${this.title}#getVar/connection] error`, connection); resolve(connection); }
+    //   connection
+    //     .then((db: SQLiteObject) => {
+    //       db.executeSql(query, [])
+    //         .then((data) => {
+    //           let result = [];
+    //           for (let item = 0; item < data.rows.length; item++) {
+    //             // console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ` | data.rows.item(${item})`, data.rows.item(item));
+    //             result.push(data.rows.item(item));
+    //           }
 
-              console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ' | result', result);
-              resolve(result);
-            })
-            .catch(e => {
-              console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ` return ${null} | error`, e);
+    //           if (var_name != '*') {
+    //             result = JSON.parse(result[0].var_value);
+    //           }
 
-              resolve(null);
-            });
-        })
-        .catch(e => {
-          console.log(`[${this.title}#getVar/db.executeSql] {${from}} error`, e);
-          resolve(null);
-        });
-    });
+    //           console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ' | result', result);
+    //           resolve(result);
+    //         })
+    //         .catch(e => {
+    //           console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ` return ${null} | error`, e);
+
+    //           resolve(null);
+    //         });
+    //     })
+    //     .catch(e => {
+    //       console.log(`[${this.title}#getVar/db.executeSql] {${from}} error`, e);
+    //       resolve(null);
+    //     });
+    // });
   }
 }

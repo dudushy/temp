@@ -2,7 +2,7 @@
   <main id="app-content">
     <ion-header [attr.mobileMode]="mobileMode">
       <ion-toolbar>
-        <ion-buttons slot="start" [attr.hideMe]="router.url.replace('/', '') == 'home'">
+        <ion-buttons slot="start" [attr.hideMe]="router.url.replace('/', '') == 'login'">
           <ion-button [attr.mobileMode]="mobileMode" (click)="goBack()">
             <ion-icon [attr.mobileMode]="mobileMode" name="caret-back"></ion-icon>
             <ion-label>Voltar</ion-label>
@@ -32,7 +32,7 @@
 
   <ion-menu [attr.mobileMode]="mobileMode" side="end" menuId="settings" contentId="app-content">
     <ion-header>
-      <ion-toolbar [attr.mobileMode]="mobileMode" translucent color="warning">
+      <ion-toolbar [attr.mobileMode]="mobileMode" translucent color="primary">
         <ion-title color="dark">Configurações</ion-title>
       </ion-toolbar>
     </ion-header>
