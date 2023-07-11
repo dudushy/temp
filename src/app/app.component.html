@@ -1,0 +1,62 @@
+<ion-app>
+  <main id="app-content">
+    <ion-header [attr.mobileMode]="mobileMode">
+      <ion-toolbar>
+        <ion-buttons slot="start" [attr.hideMe]="router.url.replace('/', '') == 'home'">
+          <ion-button [attr.mobileMode]="mobileMode" (click)="goBack()">
+            <ion-icon [attr.mobileMode]="mobileMode" name="caret-back"></ion-icon>
+            <ion-label>Voltar</ion-label>
+          </ion-button>
+        </ion-buttons>
+
+        <ion-title [attr.mobileMode]="mobileMode">
+          {{router.url.replace('/', '')}}
+        </ion-title>
+
+        <ion-buttons slot="end">
+          <ion-button [attr.mobileMode]="mobileMode" (click)="toggleSettings()">
+            <ion-icon [attr.mobileMode]="mobileMode" name="cog"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-router-outlet [attr.mobileMode]="mobileMode"></ion-router-outlet>
+
+    <ion-footer [attr.mobileMode]="mobileMode">
+      <ion-toolbar [attr.mobileMode]="mobileMode">
+        Desenvolvido por <b>Upriset</b>
+      </ion-toolbar>
+    </ion-footer>
+  </main>
+
+  <ion-menu [attr.mobileMode]="mobileMode" side="end" menuId="settings" contentId="app-content">
+    <ion-header>
+      <ion-toolbar [attr.mobileMode]="mobileMode" translucent color="warning">
+        <ion-title color="dark">Configurações</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-button *ngIf="devMode" expand="block" color="dark" (click)="redirectTo(title, 'dev')">
+          dev
+        </ion-button>
+
+        <ion-item (click)="toggleTheme()" disabled>
+          <ion-icon *ngIf="theme == 'dark'" name="moon" slot="start"></ion-icon>
+          <ion-icon *ngIf="theme == 'light'" name="sunny" slot="start"></ion-icon>
+          <ion-label>Tema</ion-label>
+        </ion-item>
+
+        <ion-button expand="block" color="dark" (click)="redirectTo(title, 'test')">
+          test
+        </ion-button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <div [attr.mobileMode]="mobileMode" id="popover">
+    <ion-icon [attr.mobileMode]="mobileMode" name="checkmark-circle"></ion-icon>
+    <span [attr.mobileMode]="mobileMode">aa</span>
+  </div>
+</ion-app>
