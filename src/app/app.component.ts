@@ -17,12 +17,6 @@ import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 
 import { APP_VERSION } from 'src/environments/version';
 
-import { HTTP } from '@awesome-cordova-plugins/http/ngx'; //! UNUSED
-
-import { File } from '@awesome-cordova-plugins/file/ngx'; //! UNUSED
-
-import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -55,9 +49,6 @@ export class AppComponent {
     public events: EventsService,
     public loadingController: LoadingController,
     public backgroundMode: BackgroundMode,
-    public http: HTTP,
-    public file: File,
-    public camera: Camera,
   ) {
     console.log(`[${this.title}#constructor]`);
 
@@ -74,14 +65,30 @@ export class AppComponent {
 
       this.loggedIn = await this.db.getVar('loggedIn', this.title) || false;
 
-      console.log(`[${this.title}#constructor/ready] set screenOrientation -> PORTRAIT`);
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      // console.log(`[${this.title}#constructor/ready] set screenOrientation -> PORTRAIT`);
+      // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+      this.screenOrientation.unlock();
+
+      console.log(`[${this.title}#constructor/ready] screenOrientation:`, this.screenOrientation.type, this.screenOrientation.ORIENTATIONS);
+
+      this.portraitMode = this.screenOrientation.type.includes('portrait');
+      console.log(`[${this.title}#constructor/ready] portraitMode:`, this.portraitMode);
+
+      this.screenOrientation.onChange().subscribe(() => {
+        console.log(`[${this.title}#constructor/ready] screenOrientation/onChange ->`, this.screenOrientation.type, this.screenOrientation.ORIENTATIONS);
+        this.portraitMode = this.screenOrientation.type.includes('portrait');
+        console.log(`[${this.title}#constructor/ready] portraitMode:`, this.portraitMode);
+      });
 
       this.mobileMode = !this.platform.is('tablet');
       console.log(`[${this.title}#constructor/ready] mobileMode:`, this.mobileMode);
 
-      this.backgroundMode.enable(); //? TEMP
-      console.log(`[${this.title}#constructor/ready] backgroundMode:`, this.backgroundMode.isActive()); //? TEMP
+      this.backgroundMode.enable();
+      this.backgroundMode.setEnabled(true);
+      console.log(`[${this.title}#constructor/ready] backgroundMode:`, this.backgroundMode.isEnabled(), this.backgroundMode.isActive());
+      this.backgroundMode.isScreenOff((bool) => {
+        console.log(`[${this.title}#constructor/ready] backgroundMode/isScreenOff:`, bool);
+      });
 
       await this.alertDbCap();
     });
@@ -273,112 +280,6 @@ export class AppComponent {
 
       if (data[0]['COUNT(*)'] >= cap) {
         await this.showAlert('Quantidade de registros', `Você atingiu ${cap} registros. Por favor, limpe os dados para continuar utilizando o aplicativo com máxima perfomance.\nAcesse: MENU -> RELATORIO -> APAGAR SINCRONIZADOS`);
-      }
-    });
-  }
-
-  takePhoto(varname: any, mode = 'base64') {
-    console.log(`[${this.title}#takePhoto] varname`, varname);
-
-    let result: any = null;
-
-    try {
-      const options: CameraOptions = {
-        quality: 100,
-        // quality: 60,
-        // targetWidth: 500,
-        // targetHeight: 500,
-        destinationType: mode == 'base64' ? this.camera.DestinationType.DATA_URL : this.camera.DestinationType.FILE_URI, //! BASE64
-        // destinationType: this.camera.DestinationType.DATA_URL, //! BASE64
-        // destinationType: this.camera.DestinationType.FILE_URI, //! BLOB
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE,
-        correctOrientation: true,
-        sourceType: this.camera.PictureSourceType.CAMERA
-      };
-      console.log(`[${this.title}#takePhoto] options`, options);
-
-      this.camera.getPicture(options).then(async (imageData) => {
-        console.log(`[${this.title}#takePhoto] (BEFORE) result:`, result);
-        console.log(`[${this.title}#takePhoto] imageData`, imageData);
-        console.log(`[${this.title}#takePhoto] mode`, mode);
-
-        if (mode == 'base64') {
-          const base64Image = 'data:image/jpeg;base64,' + imageData;
-          console.log(`[${this.title}#takePhoto] base64Image`, base64Image);
-
-          result = base64Image;
-        }
-
-        if (mode == 'blob') {
-          const path = imageData.split('/').slice(0, -1).join('/').concat('/');
-          console.log(`[${this.title}#takePhoto] path`, path);
-
-          const file = imageData.split('/').slice(-1)[0];
-          console.log(`[${this.title}#takePhoto] file`, file);
-
-          const arrayBuffer = await this.file.readAsArrayBuffer(path, file).then(arrayBuffer => { return arrayBuffer; });
-          console.log(`[${this.title}#takePhoto] arrayBuffer`, arrayBuffer);
-
-          const blob = new Blob([arrayBuffer], { type: 'image/png' });
-          console.log(`[${this.title}#takePhoto] blob`, blob);
-
-          result = blob;
-        }
-
-        console.log(`[${this.title}#takePhoto] (AFTER) result:`, result);
-      }, (error) => {
-        console.log(`[${this.title}#takePhoto] error`, error);
-      });
-    } catch (error) {
-      console.log(`[${this.title}#takePhoto] error`, error);
-      this.showAlert('Erro', `Não foi possível tirar a foto [${varname}], tente novamente!`);
-
-      result = null;
-    }
-
-    return result;
-  }
-
-  async blobToFile(blob: Blob, filename: string, foldername: string, recursive = false): Promise<any> {
-    // eslint-disable-next-line no-async-promise-executor
-    return new Promise(async (resolve) => {
-      console.log(`[${this.title}#blobToFile] --------------------------------------------------`);
-      console.log(`[${this.title}#blobToFile] blob`, blob);
-      console.log(`[${this.title}#blobToFile] filename`, filename);
-      console.log(`[${this.title}#blobToFile] foldername`, foldername);
-      // console.log(`[${this.title}#blobToFile] recursive`, recursive);
-
-      try {
-        await this.file.checkDir(this.file.dataDirectory, this.HOME_DIR).then(async () => {
-          console.log(`[${this.title}#blobToFile] checkDir OK: `, [this.file.dataDirectory, this.HOME_DIR]);
-
-          await this.file.createDir(`${this.file.dataDirectory}${this.HOME_DIR}`, foldername, true).then(async () => {
-            console.log(`[${this.title}#blobToFile] createDir [${foldername}] OK: `, [`${this.file.dataDirectory}${this.HOME_DIR}`, foldername, true]);
-
-            await this.file.writeFile(`${this.file.dataDirectory}${this.HOME_DIR}/${foldername}`, filename, blob, { replace: true }).then(async () => {
-              console.log(`[${this.title}#blobToFile] writeFile OK: `, [`${this.file.dataDirectory}${this.HOME_DIR}/${foldername}`, filename, blob, { replace: true }]);
-
-              await this.file.checkFile(`${this.file.dataDirectory}${this.HOME_DIR}/${foldername}/`, filename).then(() => {
-                console.log(`[${this.title}#blobToFile] checkFile [${filename}] OK: `, [`${this.file.dataDirectory}${this.HOME_DIR}/${foldername}/`, filename]);
-
-                const finalPath = this.file.dataDirectory + `${this.HOME_DIR}/${foldername}/${filename}`;
-                console.log(`[${this.title}#blobToFile] finalPath`, finalPath);
-
-                resolve(finalPath);
-              });
-            });
-          });
-        });
-      } catch (error) {
-        console.log(`[${this.title}#blobToFile] ERROR:`, error);
-
-        await this.file.createDir(this.file.dataDirectory, this.HOME_DIR, true).then(async () => {
-          console.log(`[${this.title}#blobToFile] createDir [${this.HOME_DIR}] OK`);
-
-          console.log(`[${this.title}#blobToFile] recursive`, recursive);
-          if (!recursive) resolve(await this.blobToFile(blob, filename, foldername, true));
-        });
       }
     });
   }
