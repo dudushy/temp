@@ -30,6 +30,7 @@ import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 })
 export class AppComponent {
   title = 'app';
+  APP_NAME = 'template-app'
   APP_VERSION = APP_VERSION;
   HOME_PAGE = 'home';
   HOME_DIR = 'template';
@@ -90,18 +91,22 @@ export class AppComponent {
       this.mobileMode = !this.platform.is('tablet');
       console.log(`[${this.title}#constructor/ready] mobileMode:`, this.mobileMode);
 
-      // try {
-      //   document.addEventListener('deviceready', () => {
-      //     this.backgroundMode.enable();
-      //     this.backgroundMode.setEnabled(true);
-      //     console.log(`[${this.title}#constructor/ready] backgroundMode:`, this.backgroundMode.isEnabled(), this.backgroundMode.isActive());
-      //     this.backgroundMode.isScreenOff((bool) => {
-      //       console.log(`[${this.title}#constructor/ready] backgroundMode/isScreenOff:`, bool);
-      //     });
-      //   }, false);
-      // } catch (error) {
-      //   console.log(`[${this.title}#constructor/ready] backgroundMode ERROR:`, error);
-      // }
+      try {
+        this.backgroundMode.setDefaults({
+          title: this.APP_NAME,
+          text: 'backgroundMode'
+        });
+        this.backgroundMode.enable();
+        this.backgroundMode.on('activate').subscribe(() => {
+          console.log(`[${this.title}#constructor/ready] backgroundMode:`, this.backgroundMode.isEnabled(), this.backgroundMode.isActive());
+
+          alert('backgroundMode');
+        });
+      } catch (error) {
+        console.log(`[${this.title}#constructor/ready] backgroundMode ERROR:`, error);
+      }
+
+      alert('test');
 
       await this.alertDbCap();
     });
