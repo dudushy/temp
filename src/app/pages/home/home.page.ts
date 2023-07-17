@@ -13,6 +13,9 @@ import { Platform } from '@ionic/angular';
 export class HomePage implements OnInit {
   title = 'home';
 
+  loginData: any;
+  str_nome: any;
+
   constructor(
     public app: AppComponent,
     public platform: Platform,
@@ -31,6 +34,11 @@ export class HomePage implements OnInit {
     this.platform.ready().then(async () => {
       console.log(`[${this.title}#ionViewDidEnter/ready]`);
 
+      this.loginData = await this.app.db.get('user', 1, this.title);
+      console.log(`[${this.title}#ionViewDidEnter] loginData`, this.loginData);
+
+      this.str_nome = this.loginData[0].str_nome;
+
       this.updateView();
     });
   }
@@ -45,5 +53,10 @@ export class HomePage implements OnInit {
 
   async redirectTo(url: any) {
     await this.app.redirectTo(this.title, url);
+  }
+
+  async redirectToListar(url: string): Promise<void> {
+    await this.app.db.setVar('listarMode', url, this.title);
+    // this.redirectTo('listar');
   }
 }

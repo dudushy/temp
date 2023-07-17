@@ -32,7 +32,7 @@ export class AppComponent {
   title = 'app';
   APP_NAME = 'template-app'
   APP_VERSION = APP_VERSION;
-  HOME_PAGE = 'home';
+  HOME_PAGE = 'login';
   HOME_DIR = 'template';
 
   devMode = false;

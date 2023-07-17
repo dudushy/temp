@@ -150,8 +150,9 @@ export class DbService {
   async createTbUser(): Promise<any> {
     const query = 'CREATE TABLE IF NOT EXISTS "tb_user"(' +
       'id INTEGER PRIMARY KEY,' +
-      'name CLOB,' +
-      'age INTEGER' +
+      'int_id CLOB,' +
+      'int_empresa CLOB,' +
+      'str_nome CLOB' +
       ');';
     console.log(`[${this.title}#createTbUser] query`, [query]);
 
@@ -224,13 +225,15 @@ export class DbService {
 
     const query = 'REPLACE INTO "tb_user"(' +
       'id,' +
-      'name,' +
-      'age' +
+      'int_id,' +
+      'int_empresa,' +
+      'str_nome' +
       ')' +
       'VALUES(' +
       '1,' +
-      `${itemData.name ? '"' + itemData.name + '"' : null},` +
-      `${itemData.age ? '"' + itemData.age + '"' : null}` +
+      `${itemData.int_id ? '"' + itemData.int_id + '"' : null},` +
+      `${itemData.int_empresa ? '"' + itemData.int_empresa + '"' : null},` +
+      `${itemData.str_nome ? '"' + itemData.str_nome + '"' : null}` +
       ');';
 
     console.log(`[${this.title}#setTbUser] {${from}} query`, [query]);

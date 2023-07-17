@@ -76,8 +76,8 @@ export class LoginPage implements OnInit {
   autoFill() {
     console.log(`[${this.title}#autoFill]`);
 
-    this.user = 'adm@edusan.com.br';
-    this.password = '145frd';
+    this.user = 'adm@adm.com.br';
+    this.password = '123';
   }
 
   async login() {
@@ -129,7 +129,7 @@ export class LoginPage implements OnInit {
         await this.app.stopLoading();
 
         await this.app.showAlert('Login', 'Logado com sucesso!');
-        this.redirectTo('menu');
+        this.redirectTo('home');
 
         this.updateView();
       })
