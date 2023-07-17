@@ -43,7 +43,7 @@ export class HomePage implements OnInit {
     this.app.updateView(this.title);
   }
 
-  redirectTo(url: string) {
-    this.app.redirectTo(this.title, url);
+  async redirectTo(url: any) {
+    await this.app.redirectTo(this.title, url);
   }
 }

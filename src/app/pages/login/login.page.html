@@ -1,3 +1,52 @@
 <ion-content [fullscreen]="true">
-  {{title}}
+  <header>
+    <p>{{app.APP_NAME}}</p>
+    <p>{{app.APP_VERSION}}</p>
+  </header>
+
+  <table [attr.mobileMode]="app.mobileMode">
+    <tr>
+      <td>
+        <ion-item [attr.mobileMode]="app.mobileMode" class="loginInputItem">
+          <ion-label [attr.mobileMode]="app.mobileMode">
+            <ion-icon [attr.mobileMode]="app.mobileMode" name="person-circle"></ion-icon>
+          </ion-label>
+
+          <ion-input [attr.mobileMode]="app.mobileMode" clearInput maxlength="256" type="email" [(ngModel)]="user" id="login_user" placeholder="Usuario"></ion-input>
+        </ion-item>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ion-item [attr.mobileMode]="app.mobileMode" class="loginInputItem">
+          <ion-label [attr.mobileMode]="app.mobileMode">
+            <ion-icon [attr.mobileMode]="app.mobileMode" name="lock-closed"></ion-icon>
+          </ion-label>
+
+          <ion-input [attr.mobileMode]="app.mobileMode" clearInput maxlength="256" type="{{passwordPeek ? 'text' : 'password'}}" [(ngModel)]="password" id="login_password" placeholder="Senha"></ion-input>
+
+          <ion-icon [attr.mobileMode]="app.mobileMode" *ngIf="!passwordPeek" type="password" id="passwordPeek" name="eye" (click)="togglePasswordPeek()"></ion-icon>
+          <ion-icon [attr.mobileMode]="app.mobileMode" *ngIf="passwordPeek" type="text" id="passwordPeek" name="eye-off" (click)="togglePasswordPeek()"></ion-icon>
+
+        </ion-item>
+      </td>
+    </tr>
+    <tr>
+      <td [attr.mobileMode]="app.mobileMode" id="loginLastSteps">
+        <hr [attr.mobileMode]="app.mobileMode">
+
+        <ion-item>
+          <ion-label [attr.mobileMode]="app.mobileMode">Lembrar conta</ion-label>
+          <ion-checkbox [attr.mobileMode]="app.mobileMode" slot="end" [(ngModel)]="checkbox_rememberLogin" (ionChange)="updateCheckbox(checkbox_rememberLogin)"></ion-checkbox>
+        </ion-item>
+
+        <br>
+
+        <ion-button [attr.mobileMode]="app.mobileMode" id="loginButton" size="large" expand="block" (click)="login()">
+          Entrar
+        </ion-button>
+        <!-- <ion-progress-bar *ngIf="isLoading" type="indeterminate" color="success"></ion-progress-bar> -->
+      </td>
+    </tr>
+  </table>
 </ion-content>

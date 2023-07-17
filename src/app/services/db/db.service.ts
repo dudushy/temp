@@ -31,7 +31,7 @@ export class DbService {
       await this.createTbUser();
       await this.createTbVars();
 
-      if (await this.getVar('BASE_URL', this.title) == null) await this.setVar('BASE_URL', 'BASE_URL', this.title);
+      if (await this.getVar('BASE_URL', this.title) == null) await this.setVar('BASE_URL', 'http://webservice.spedo.com.br/api/supaglass/', this.title);
 
       if (await this.getVar('devMode', this.title) == null) await this.setVar('devMode', false, this.title);
 
@@ -384,41 +384,41 @@ export class DbService {
 
     console.log(`[${this.title}#getVar] {${from}} query`, [query]);
 
-    return null; //? TEMP
+    // return null; //? TEMP
 
-    // return await new Promise(resolve => {
-    //   const connection = this.sqlite.create({
-    //     name: `${this.DB_NAME}_${this.APP_VERSION}.db`,
-    //     location: 'default'
-    //   });
-    //   if (!connection) { console.log(`[${this.title}#getVar/connection] error`, connection); resolve(connection); }
-    //   connection
-    //     .then((db: SQLiteObject) => {
-    //       db.executeSql(query, [])
-    //         .then((data) => {
-    //           let result = [];
-    //           for (let item = 0; item < data.rows.length; item++) {
-    //             // console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ` | data.rows.item(${item})`, data.rows.item(item));
-    //             result.push(data.rows.item(item));
-    //           }
+    return await new Promise(resolve => {
+      const connection = this.sqlite.create({
+        name: `${this.DB_NAME}_${this.APP_VERSION}.db`,
+        location: 'default'
+      });
+      if (!connection) { console.log(`[${this.title}#getVar/connection] error`, connection); resolve(connection); }
+      connection
+        .then((db: SQLiteObject) => {
+          db.executeSql(query, [])
+            .then((data) => {
+              let result = [];
+              for (let item = 0; item < data.rows.length; item++) {
+                // console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ` | data.rows.item(${item})`, data.rows.item(item));
+                result.push(data.rows.item(item));
+              }
 
-    //           if (var_name != '*') {
-    //             result = JSON.parse(result[0].var_value);
-    //           }
+              if (var_name != '*') {
+                result = JSON.parse(result[0].var_value);
+              }
 
-    //           console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ' | result', result);
-    //           resolve(result);
-    //         })
-    //         .catch(e => {
-    //           console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ` return ${null} | error`, e);
+              console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ' | result', result);
+              resolve(result);
+            })
+            .catch(e => {
+              console.log(`[${this.title}#getVar/db.executeSql] {${from}}`, [query], ` return ${null} | error`, e);
 
-    //           resolve(null);
-    //         });
-    //     })
-    //     .catch(e => {
-    //       console.log(`[${this.title}#getVar/db.executeSql] {${from}} error`, e);
-    //       resolve(null);
-    //     });
-    // });
+              resolve(null);
+            });
+        })
+        .catch(e => {
+          console.log(`[${this.title}#getVar/db.executeSql] {${from}} error`, e);
+          resolve(null);
+        });
+    });
   }
 }

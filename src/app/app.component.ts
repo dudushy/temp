@@ -73,6 +73,8 @@ export class AppComponent {
 
       this.loggedIn = await this.db.getVar('loggedIn', this.title) || false;
 
+      this.devMode = await this.db.getVar('devMode', this.title) || false;
+
       // console.log(`[${this.title}#constructor/ready] set screenOrientation -> PORTRAIT`);
       // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
       this.screenOrientation.unlock();
@@ -91,24 +93,23 @@ export class AppComponent {
       this.mobileMode = !this.platform.is('tablet');
       console.log(`[${this.title}#constructor/ready] mobileMode:`, this.mobileMode);
 
-      try {
-        this.backgroundMode.setDefaults({
-          title: this.APP_NAME,
-          text: 'backgroundMode'
-        });
-        this.backgroundMode.enable();
-        this.backgroundMode.on('activate').subscribe(() => {
-          console.log(`[${this.title}#constructor/ready] backgroundMode:`, this.backgroundMode.isEnabled(), this.backgroundMode.isActive());
+      // try {
+      //   alert('backgroundMode TRY');
+      //   this.backgroundMode.setDefaults({
+      //     title: this.APP_NAME,
+      //     text: 'backgroundMode'
+      //   });
+      //   this.backgroundMode.enable();
+      //   this.backgroundMode.on('activate').subscribe(() => {
+      //     console.log(`[${this.title}#constructor/ready] backgroundMode:`, this.backgroundMode.isEnabled(), this.backgroundMode.isActive());
 
-          alert('backgroundMode');
-        });
-      } catch (error) {
-        console.log(`[${this.title}#constructor/ready] backgroundMode ERROR:`, error);
-      }
+      //     alert('backgroundMode SUCCESS');
+      //   });
+      // } catch (error) {
+      //   console.log(`[${this.title}#constructor/ready] backgroundMode ERROR:`, error);
+      // }
 
-      alert('test');
-
-      await this.alertDbCap();
+      // await this.alertDbCap(); //! ALERT DB CAP
     });
   }
 
@@ -117,11 +118,11 @@ export class AppComponent {
     this.cdr.detectChanges();
   }
 
-  redirectTo(from: any, url: any): void {
+  async redirectTo(from: any, url: any): Promise<void> {
     console.log(`[${this.title}#redirectTo] (${from})`, url);
 
     if (url == 'login' && this.loggedIn) { this.confirmExit(); return; }
-    this.router.navigateByUrl('/' + url);
+    await this.router.navigateByUrl('/' + url);
   }
 
   async startLoading(msg: any = 'Carregando...') {
