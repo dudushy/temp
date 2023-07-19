@@ -95,7 +95,7 @@ export class DevPage implements OnInit {
   }
 
   async selectAllFromTable(table: any): Promise<void> {
-    const result = await this.app.db.get(table, '*', this.title);
+    const result = await this.app.db.query(`SELECT * FROM "tb_${table}"`);
     console.log(`[${this.title}#selectAllFromTable] (${table}) result`, result);
   }
 
