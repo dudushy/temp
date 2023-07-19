@@ -23,6 +23,23 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
   },
+  {
+    path: 'checklist',
+    loadChildren: () => import('./pages/checklist/checklist.module').then( m => m.ChecklistPageModule)
+  },
+  {
+    path: 'sync',
+    loadChildren: () => import('./pages/sync/sync.module').then( m => m.SyncPageModule)
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./pages/list/list.module').then( m => m.ListPageModule)
+  },
+  {
+    path: 'record',
+    loadChildren: () => import('./pages/record/record.module').then( m => m.RecordPageModule)
+  },
+
 
 ];
 

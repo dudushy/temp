@@ -7,7 +7,7 @@ import { Subject, Subscription } from 'rxjs';
   providedIn: 'root'
 })
 export class EventsService {
-  title = 'events';
+  title = '@events';
 
   channels: { [key: string]: Subject<any>; } = { };
 

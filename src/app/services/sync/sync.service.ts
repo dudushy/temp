@@ -15,7 +15,7 @@ import { EventsService } from 'src/app/services/events/events.service';
   providedIn: 'root'
 })
 export class SyncService {
-  title = 'sync';
+  title = '@sync';
 
   isSyncing = false;
 

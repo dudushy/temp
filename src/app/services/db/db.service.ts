@@ -11,7 +11,7 @@ import { APP_VERSION } from 'src/environments/version';
   providedIn: 'root'
 })
 export class DbService {
-  title = 'db';
+  title = '@db';
 
   APP_VERSION = APP_VERSION.replace(/[^0-9]/g, '');
   DB_NAME = 'template';

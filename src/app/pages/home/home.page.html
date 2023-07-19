@@ -1,40 +1,49 @@
 <ion-content [fullscreen]="true">
-  <div [attr.mobileMode]="app.mobileMode" id="menuHeader">
-    <img [attr.mobileMode]="app.mobileMode" src="assets/img/supaglas-logo.png">
+  <div *ngIf="loginData?.length == 0">
+    <ion-button [attr.mobileMode]="app.mobileMode" color="danger" size="large" expand="block" (click)="redirectTo('login')">
+      <ion-icon [attr.mobileMode]="app.mobileMode" name="lock-open" slot="start"></ion-icon>
+      <ion-label [attr.mobileMode]="app.mobileMode">login</ion-label>
+    </ion-button>
+  </div>
+
+  <div [attr.mobileMode]="app.mobileMode" id="menuHeader" *ngIf="loginData?.length > 0">
+    <img [attr.mobileMode]="app.mobileMode" src="assets/img/supaglass-logo.png">
 
     <span [attr.mobileMode]="app.mobileMode">
       Olá, <b [attr.mobileMode]="app.mobileMode">{{str_nome}}</b>
     </span>
   </div>
 
-  <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToListar('recepcao')">
-    <ion-icon [attr.mobileMode]="app.mobileMode" name="enter" slot="start"></ion-icon>
-    <ion-label [attr.mobileMode]="app.mobileMode">0 Inicial</ion-label>
-  </ion-button>
+  <div *ngIf="loginData?.length > 0">
+    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToListar('recepcao')">
+      <ion-icon [attr.mobileMode]="app.mobileMode" name="enter" slot="start"></ion-icon>
+      <ion-label [attr.mobileMode]="app.mobileMode">0 Inicial</ion-label>
+    </ion-button>
 
-  <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToListar('tecnico')">
-    <ion-icon [attr.mobileMode]="app.mobileMode" name="shapes" slot="start"></ion-icon>
-    <ion-label [attr.mobileMode]="app.mobileMode">1 Desmontagem</ion-label>
-  </ion-button>
+    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToListar('tecnico')">
+      <ion-icon [attr.mobileMode]="app.mobileMode" name="shapes" slot="start"></ion-icon>
+      <ion-label [attr.mobileMode]="app.mobileMode">1 Desmontagem</ion-label>
+    </ion-button>
 
-  <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToListar('entrega')">
-    <ion-icon [attr.mobileMode]="app.mobileMode" name="construct" slot="start"></ion-icon>
-    <ion-label [attr.mobileMode]="app.mobileMode">2 Montagem</ion-label>
-  </ion-button>
+    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToListar('entrega')">
+      <ion-icon [attr.mobileMode]="app.mobileMode" name="construct" slot="start"></ion-icon>
+      <ion-label [attr.mobileMode]="app.mobileMode">2 Montagem</ion-label>
+    </ion-button>
 
-  <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToListar('pagamento')">
-    <ion-icon [attr.mobileMode]="app.mobileMode" name="bag-check" slot="start"></ion-icon>
-    <ion-label [attr.mobileMode]="app.mobileMode">3 Encerrada</ion-label>
-  </ion-button>
+    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToListar('pagamento')">
+      <ion-icon [attr.mobileMode]="app.mobileMode" name="bag-check" slot="start"></ion-icon>
+      <ion-label [attr.mobileMode]="app.mobileMode">3 Encerrada</ion-label>
+    </ion-button>
+  </div>
 
   <hr [attr.mobileMode]="app.mobileMode">
 
-  <ion-button [attr.mobileMode]="app.mobileMode" size="large" expand="block" color="warning" (click)="redirectTo('sincronizacao')">
+  <ion-button [attr.mobileMode]="app.mobileMode" size="large" expand="block" color="secondary" (click)="redirectTo('sincronizacao')">
     <ion-icon [attr.mobileMode]="app.mobileMode" name="cloud-upload-outline" slot="start"></ion-icon>
     <ion-label [attr.mobileMode]="app.mobileMode">Sincronização</ion-label>
   </ion-button>
 
-  <ion-button [attr.mobileMode]="app.mobileMode" size="large" expand="block" color="warning" (click)="redirectTo('relatorio')">
+  <ion-button [attr.mobileMode]="app.mobileMode" size="large" expand="block" color="secondary" (click)="redirectTo('relatorio')">
     <ion-icon [attr.mobileMode]="app.mobileMode" name="receipt" slot="start"></ion-icon>
     <ion-label [attr.mobileMode]="app.mobileMode">Relatórios</ion-label>
   </ion-button>

@@ -7,6 +7,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { SettingsComponent } from './components/settings/settings.component';
+
+import { PopoverComponent } from './components/popover/popover.component';
+
 import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 
 import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/ngx';
@@ -20,7 +24,11 @@ import { File } from '@awesome-cordova-plugins/file/ngx';
 import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    SettingsComponent,
+    PopoverComponent
+  ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AppComponent,

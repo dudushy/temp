@@ -212,7 +212,8 @@ export class AppComponent {
           handler: async () => {
             console.log(`[${this.title}#confirmExit] ACCEPT`);
 
-            await this.db.setTbUser({}, this.title);
+            // await this.db.setTbUser({}, this.title);
+            await this.db.query('DELETE FROM "tb_user"');
             await this.db.setVar('rememberLogin', false, this.title);
             await this.db.setVar('loggedIn', false, this.title);
             this.loggedIn = false;

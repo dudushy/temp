@@ -40,12 +40,12 @@ ion-content {
 
   b {
     text-transform: capitalize;
-    color: $primary;
+    color: $secondary;
   }
 }
 
 hr {
-  background-color: $dark;
+  background-color: $tertiary;
   padding: 0.5%;
   margin-block: 1%;
   border-radius: 30px;
@@ -53,9 +53,9 @@ hr {
 }
 
 .checklistButtons {
-  --background: $primary;
-  background: $primary;
-  color: $light;
+  --background: $light;
+  background: $light;
+  color: $primary;
 }
 
 ion-button {

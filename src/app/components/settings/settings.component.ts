@@ -6,15 +6,12 @@ import { AppComponent } from 'src/app/app.component';
 import { Platform } from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss'],
 })
-export class HomePage implements OnInit {
-  title = 'home';
-
-  loginData: any;
-  str_nome: any;
+export class SettingsComponent implements OnInit {
+  title = '&settings';
 
   constructor(
     public app: AppComponent,
@@ -34,14 +31,6 @@ export class HomePage implements OnInit {
     this.platform.ready().then(async () => {
       console.log(`[${this.title}#ionViewDidEnter/ready]`);
 
-      this.loginData = await this.app.db.get('user', 1, this.title);
-      console.log(`[${this.title}#ionViewDidEnter] loginData`, this.loginData);
-
-      if (this.loginData.length > 0) {
-        this.str_nome = this.loginData[0].str_nome;
-        console.log(`[${this.title}#ionViewDidEnter] str_nome`, this.str_nome);
-      }
-
       this.updateView();
     });
   }
@@ -56,10 +45,5 @@ export class HomePage implements OnInit {
 
   async redirectTo(url: any) {
     await this.app.redirectTo(this.title, url);
-  }
-
-  async redirectToListar(url: string): Promise<void> {
-    await this.app.db.setVar('listarMode', url, this.title);
-    // this.redirectTo('listar');
   }
 }

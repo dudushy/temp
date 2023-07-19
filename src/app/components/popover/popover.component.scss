@@ -1,0 +1,51 @@
+@import "../../../theme/variables.scss";
+
+#popover {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 90%;
+  left: 20%;
+  width: 60%;
+  height: 8%;
+  background-color: transparentize($primary, 0.1);
+  border-radius: 10px;
+  border: 2px solid $abradit-background-light;
+  box-shadow: 0px 0px 10px 5px $primary;
+  transition: 1s;
+  z-index: 999;
+  pointer-events: none;
+
+  &.popover-active {
+    display: flex;
+  }
+
+  ion-icon {
+    fill: $abradit-success;
+    position: relative;
+    top: 0;
+    left: 1%;
+    &[mobileMode="true"] {
+      font-size: 18vw;
+    }
+    &[mobileMode="false"] {
+      font-size: 18vw;
+    }
+  }
+
+  span {
+    width: 100%;
+    color: $abradit-text-light;
+    font-size: 5vw;
+    position: relative;
+    top: 0;
+    left: 2%;
+    &[mobileMode="true"] {
+      font-size: 5vw;
+    }
+    &[mobileMode="false"] {
+      font-size: 5vw;
+    }
+  }
+}
