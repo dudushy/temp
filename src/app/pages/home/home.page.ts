@@ -34,7 +34,7 @@ export class HomePage implements OnInit {
     this.platform.ready().then(async () => {
       console.log(`[${this.title}#ionViewDidEnter/ready]`);
 
-      this.loginData = await this.app.db.get('user', 1, this.title);
+      this.loginData = await this.app.db.query('SELECT * FROM "tb_user" WHERE id = "1"');
       console.log(`[${this.title}#ionViewDidEnter] loginData`, this.loginData);
 
       if (this.loginData.length > 0) {
