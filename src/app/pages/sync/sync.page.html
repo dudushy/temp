@@ -1,13 +1,58 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>sync</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">sync</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="refreshLog($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div id="logDiv">
+    <button [attr.mobileMode]="app.mobileMode" id="forceSyncButton" (click)="forceSync()">
+      <ion-icon [attr.mobileMode]="app.mobileMode" name="sync-circle" slot="start"></ion-icon>
+      <ion-label [attr.mobileMode]="app.mobileMode">Sincronizar</ion-label>
+    </button>
+
+    <ion-title [attr.mobileMode]="app.mobileMode" *ngIf="logArray?.length == 0">Nenhum log encontrado.</ion-title>
+
+    <table *ngIf="logArray?.length != 0">
+      <tr [attr.mobileMode]="app.mobileMode" id="subtitles">
+        <!-- <td [attr.mobileMode]="app.mobileMode" colspan="3">🔄: Sincronizando</td>
+        <td [attr.mobileMode]="app.mobileMode" colspan="2">✔️: Sincronizado</td>
+        <td [attr.mobileMode]="app.mobileMode" colspan="1">❌: Erro</td> -->
+
+        <td [attr.mobileMode]="app.mobileMode" colspan="6">
+          🔄: Sincronizando &nbsp;
+          ✔️: Sincronizado &nbsp;
+          ❌: Erro
+        </td>
+      </tr>
+      <tr>
+        <th [attr.mobileMode]="app.mobileMode">ID</th>
+        <th [attr.mobileMode]="app.mobileMode">PLACA</th>
+        <th [attr.mobileMode]="app.mobileMode">DATA</th>
+        <th [attr.mobileMode]="app.mobileMode">STATUS</th>
+        <th [attr.mobileMode]="app.mobileMode">CHECKLIST</th>
+        <th [attr.mobileMode]="app.mobileMode">MENSAGEM</th>
+      </tr>
+      <!-- <tr *ngFor="let log of logArray | keyvalue : defaultOrder; let i = index" [attr.separator]="i % 2 === 0" id="{{log.value['id']}}">
+        <td class="tdId">
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanIdAgendamento">{{log.value['id_agendamento']}}</span>
+        </td>
+        <td>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanPlaca">{{log.value['placa']}}</span>
+        </td>
+        <td class="tdDate">
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanData">{{log.value['data']}}</span>
+        </td>
+        <td>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanStatus" *ngIf="log.value['status'] == 'Sincronizando'">🔄</span>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanStatus" *ngIf="log.value['status'] == 'Sincronizado'">✔️</span>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanStatus" *ngIf="log.value['status'] == 'Erro'">❌</span>
+        </td>
+        <td>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanChecklist">{{log.value['checklist']}}</span>
+        </td>
+        <td class="tdMsg">
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanMensagem">{{log.value['mensagem']}}</span>
+        </td>
+      </tr> -->
+    </table>
+  </div>
 </ion-content>

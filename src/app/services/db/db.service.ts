@@ -796,7 +796,6 @@ export class DbService {
     });
   }
 
-  //TODO createTbLog
   async createTbLog(): Promise<any> {
     const query = 'CREATE TABLE IF NOT EXISTS "tb_log"(' +
       'id INTEGER PRIMARY KEY,' +
@@ -805,7 +804,7 @@ export class DbService {
       'plate CLOB,' +
       'schedule CLOB,' +
       'checklistType CLOB,' +
-      'note CLOB' +
+      'message CLOB' +
       ');';
     console.log(`[${this.title}#createTbLog] query`, [query]);
 
@@ -834,25 +833,24 @@ export class DbService {
     });
   }
 
-  //TODO insertTbLog
   async insertTbLog(itemData: any, from: any): Promise<any> {
     console.log(`[${this.title}#insertTbLog] {${from}} itemData`, itemData);
 
     const query = 'INSERT INTO "tb_log"(' +
-      'id_agendamento,' +
-      'status,' +
-      'placa,' +
-      'data,' +
-      'checklist,' +
-      'mensagem' +
+    'id_schedule,' +
+    'status,' +
+    'plate,' +
+    'schedule,' +
+    'checklistType,' +
+    'message' +
       ')' +
       'VALUES(' +
-      `${itemData.id_agendamento ? '"' + itemData.id_agendamento + '"' : null},` +
+      `${itemData.id_schedule ? '"' + itemData.id_schedule + '"' : null},` +
       `${itemData.status ? '"' + itemData.status + '"' : null},` +
-      `${itemData.placa ? '"' + itemData.placa + '"' : null},` +
-      `${itemData.data ? '"' + itemData.data + '"' : null},` +
-      `${itemData.checklist ? '"' + itemData.checklist + '"' : null},` +
-      `${itemData.mensagem ? '"' + itemData.mensagem + '"' : null}` +
+      `${itemData.plate ? '"' + itemData.plate + '"' : null},` +
+      `${itemData.schedule ? '"' + itemData.schedule + '"' : null},` +
+      `${itemData.checklistType ? '"' + itemData.checklistType + '"' : null},` +
+      `${itemData.message ? '"' + itemData.message + '"' : null}` +
       ');';
 
     console.log(`[${this.title}#insertTbLog] {${from}} query`, [query]);

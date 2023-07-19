@@ -1,0 +1,208 @@
+@import "../../../theme/variables.scss";
+
+ion-content {
+  background-color: $primary;
+  --background: $primary;
+  color: $light;
+  --color: $light;
+}
+
+#forceSyncButton {
+  background-color: $warning;
+  color: $mpi-background;
+  padding: 1%;
+  margin: 0.1%;
+  width: 100%;
+  border-radius: 5px;
+  text-transform: uppercase;
+  position: relative;
+  &[mobileMode="true"] {
+    font-size: 4vw;
+  }
+  &[mobileMode="false"] {
+    font-size: 4vw;
+  }
+
+  ion-icon {
+    fill: $mpi-background;
+    position: absolute;
+    &[mobileMode="true"] {
+      font-size: 5vw;
+      left: 30%;
+      top: 10%;
+    }
+    &[mobileMode="false"] {
+      font-size: 4vw;
+      left: 30%;
+      top: 10%;
+    }
+  }
+}
+
+#logDiv {
+  width: 100%;
+
+  ion-title {
+    margin-top: 5vh;
+    text-align: center;
+    color: $mpi-background;
+    &[mobileMode="true"] {
+      font-size: 3vw;
+    }
+    &[mobileMode="false"] {
+      font-size: 5vw;
+    }
+  }
+
+  table td, table th { overflow-wrap: anywhere; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: scroll;
+
+    tr {
+      width: 100%;
+      &[separator="true"] {
+        background: rgba($mpi-background, 0.2);
+      }
+      &[separator="false"] {
+        background: rgba($warning, 0.2);
+      }
+    }
+
+    th,
+    td {
+      padding: 0.5vw;
+      border-bottom: $mpi-background 2px solid;
+      border-right: $mpi-background 2px solid;
+      border-left: $mpi-background 2px solid;
+    }
+
+    th {
+      overflow-wrap: normal;
+      background: $mpi-background;
+      color: $mpi-text;
+      border-right: $warning 2px solid;
+      border-left: $warning 2px solid;
+      text-align: center;
+      &[mobileMode="true"] {
+        font-size: 3vw;
+      }
+      &[mobileMode="false"] {
+        font-size: 2vw;
+      }
+    }
+
+    td:not(.tdMsg){
+      overflow-wrap: normal;
+    }
+
+    td {
+      color: darken($mpi-background, 10%);
+    }
+
+    #subtitles {
+      &[mobileMode="true"] {
+        padding: 0.5vw;
+      }
+      &[mobileMode="false"] {
+        padding: 0.5vw;
+      }
+
+      td {
+        border: none;
+        border-bottom: $warning 2px solid;
+        // background: lighten($mpi-background, 10%);
+        // background: $mpi-background;
+        background: $medium;
+        color: $mpi-text;
+        &[mobileMode="true"] {
+          font-size: 4.4vw;
+          padding-block: 1%;
+        }
+        &[mobileMode="false"] {
+          font-size: 4vw;
+        }
+      }
+    }
+
+    // .tdId {
+    //   overflow-wrap: normal;
+    // }
+
+    // .tdDate {
+    //   overflow-wrap: normal;
+    // }
+
+    // .tdMsg {
+    //   overflow-wrap: normal; //! THATS THE PROBLEM
+    // }
+
+    .spanField {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &[mobileMode="true"] {
+        font-size: 2.9vw;
+      }
+      &[mobileMode="false"] {
+        font-size: 2vw;
+      }
+    }
+
+    // .spanIdAgendamento {
+    //   &[mobileMode="true"] {
+    //     font-size: 2vw;
+    //   }
+    //   &[mobileMode="false"] {
+    //     font-size: 2vw;
+    //   }
+    // }
+
+    // .spanPlaca {
+    //   &[mobileMode="true"] {
+    //     font-size: 2vw;
+    //   }
+    //   &[mobileMode="false"] {
+    //     font-size: 2vw;
+    //   }
+    // }
+
+    // .spanData {
+    //   &[mobileMode="true"] {
+    //     font-size: 2vw;
+    //   }
+    //   &[mobileMode="false"] {
+    //     font-size: 2vw;
+    //   }
+    // }
+
+    // .spanStatus {
+    //   &[mobileMode="true"] {
+    //     font-size: 2vw;
+    //   }
+    //   &[mobileMode="false"] {
+    //     font-size: 2vw;
+    //   }
+    // }
+
+    // .spanChecklist {
+    //   &[mobileMode="true"] {
+    //     font-size: 2vw;
+    //   }
+    //   &[mobileMode="false"] {
+    //     font-size: 2vw;
+    //   }
+    // }
+
+    // .spanMensagem {
+    //   &[mobileMode="true"] {
+    //     font-size: 2vw;
+    //   }
+    //   &[mobileMode="false"] {
+    //     font-size: 2vw;
+    //   }
+    // }
+  }
+}

@@ -58,7 +58,7 @@ export class HomePage implements OnInit {
     await this.app.redirectTo(this.title, url);
   }
 
-  async redirectToListar(url: string): Promise<void> {
+  async redirectToList(url: string): Promise<void> {
     await this.app.db.setVar('listarMode', url, this.title);
     // this.redirectTo('listar');
   }

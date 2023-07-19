@@ -63,6 +63,8 @@ export class AppComponent {
     this.platform.ready().then(async () => {
       console.log(`[${this.title}#constructor/ready]`);
 
+      console.log(`[${this.title}#constructor/ready] router.config`, this.router.config);
+
       this.events.subscribe('sync:finished', async (data: any) => {
         console.log(`[${this.title}#constructor/ready] EVENT = sync:finished`, data.time);
 
@@ -120,6 +122,8 @@ export class AppComponent {
 
   async redirectTo(from: any, url: any): Promise<void> {
     console.log(`[${this.title}#redirectTo] (${from})`, url);
+
+    if (!url) { await this.router.navigateByUrl('/'); return; }
 
     if (url == 'login' && this.loggedIn) { this.confirmExit(); return; }
     await this.router.navigateByUrl('/' + url);
@@ -186,6 +190,11 @@ export class AppComponent {
       'dev': 'login',
       'test': 'home',
 
+      'sync': 'home',
+      'list': 'home',
+      'record': 'home',
+
+      'checklist': 'list'
     }[currentPage];
     this.redirectTo(this.title, futurePage);
   }
