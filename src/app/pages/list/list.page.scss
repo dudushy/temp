@@ -6,3 +6,306 @@ ion-content {
   color: $light;
   --color: $light;
 }
+
+#skip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 8vmax;
+  transform: translate(-5vmax, 0%);
+  fill: $primary;
+  border-radius: 50%;
+  background-color: $warning;
+  padding: 3%;
+}
+
+table {
+  width: 100%;
+}
+
+header {
+  display: flex;
+  align-items: center;
+
+  ion-icon {
+    fill: $mpi-background;
+    &[mobileMode="true"] {
+      font-size: 15vw;
+    }
+    &[mobileMode="false"] {
+      font-size: 20vw;
+    }
+  }
+
+  #searchBar {
+    position: relative;
+    margin: 2%;
+    width: 100%;
+
+    input {
+      margin-left: 2%;
+      padding: 3%;
+      width: 96%;
+      border-radius: 5px;
+      box-shadow: 0 0 6px 3px $mpi-background;
+      color: $dark;
+      background-color: $warning;
+      text-align: left;
+      margin-bottom: 1%;
+      &[mobileMode="true"] {
+        font-size: 5.8vw;
+        font-weight: 500;
+      }
+      &[mobileMode="false"] {
+        font-size: 5vw;
+        font-weight: 500;
+      }
+    }
+
+    button {
+      position: absolute;
+      height: 10%;
+      width: 10%;
+      border-radius: 50%;
+      border: none;
+      background-color: transparent;
+      &[mobileMode="true"] {
+        top: 18%;
+        left: 87%;
+      }
+      &[mobileMode="false"] {
+        top: 13%;
+        left: 87%;
+      }
+
+      ion-icon {
+        fill: $mpi-background;
+        &[mobileMode="true"] {
+          font-size: 8vw;
+        }
+        &[mobileMode="false"] {
+          font-size: 8vw;
+        }
+      }
+    }
+  }
+}
+
+ion-title {
+  color: $mpi-text;
+  background-color: $mpi-background;
+  padding-block: 1%;
+  &[mobileMode="true"] {
+    font-size: 6vw;
+  }
+  &[mobileMode="false"] {
+    font-size: 5vw;
+  }
+}
+
+.notFoundTitle {
+  color: $mpi-text;
+  background-color: $danger;
+  padding-block: 1%;
+  &[mobileMode="true"] {
+    font-size: 6vw;
+  }
+  &[mobileMode="false"] {
+    font-size: 5vw;
+  }
+}
+
+#buttonSemAgendamento {
+  background-color: $warning;
+  color: invert($mpi-text, 100%);
+  font-weight: 400;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  padding-block: 2%;
+  &[mobileMode="true"] {
+    font-size: 6vw;
+  }
+  &[mobileMode="false"] {
+    font-size: 5vw;
+  }
+}
+
+ion-progress-bar {
+  padding-block: 1%;
+}
+
+#arrayDiv {
+  .arrayItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    border-inline: 8px solid $mpi-background;
+    margin-block: 3%;
+    padding-block: 3%;
+    padding-inline: 1%;
+    margin-inline: 0.5%;
+    background-color: lighten($mpi-background, 60%);
+    border-block: 3px dashed $mpi-background;
+
+    .itemId {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      // align-items: flex-start;
+      align-items: center;
+      justify-content: space-between;
+
+      span {
+        // position: absolute;
+        // top: 0%;
+        // left: 0%;
+        // color: $dark;
+        color: $warning;
+        padding: 14%;
+        border-radius: 5px;
+        background-color: darken($mpi-background, 5%);
+        &[mobileMode="true"] {
+          font-size: 5.2vw;
+          font-weight: 900;
+        }
+        &[mobileMode="false"] {
+          font-size: 5.2vw;
+          font-weight: 900;
+        }
+      }
+
+      ion-icon {
+        fill: $mpi-background;
+        &[mobileMode="true"] {
+          font-size: 13vw;
+        }
+        &[mobileMode="false"] {
+          font-size: 13vw;
+        }
+      }
+    }
+
+    .itemInfo {
+      display: flex;
+      // flex-direction: column;
+      // align-items: flex-start;
+      // gap: 1em;
+      margin-left: 2%;
+      width: 100%;
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+
+        tr {
+          width: 100%;
+          // &[mobileMode="true"] {
+          //   border-bottom: 30px solid transparent;
+          // }
+          // &[mobileMode="false"] {
+          //   border-bottom: 30px solid transparent;
+          // }
+        }
+
+        td {
+          width: 100%;
+        }
+
+        .tdPlate {
+          width: 50%;
+
+          span {
+            display: flex;
+            justify-content: center;
+            padding: 1%;
+            background-color: $warning;
+            color: $mpi-background;
+            border: 3px solid $mpi-background;
+            border-radius: 8px;
+            font-family: monospace;
+            &[mobileMode="true"] {
+              font-size: 7vw;
+            }
+            &[mobileMode="false"] {
+              font-size: 7vw;
+            }
+          }
+        }
+
+        .tdModel {
+          width: 50%;
+
+          span {
+            display: flex;
+            justify-content: center;
+            margin-inline: 3%;
+            // color: darken($warning, 10%);
+            color: $warning;
+            text-shadow: -1px -1px 0 $mpi-background, 1px -1px 0 $mpi-background, -1px 1px 0 $mpi-background,
+              1px 1px 0 $mpi-background;
+            &[mobileMode="true"] {
+              font-size: 6vw;
+              font-weight: 900;
+            }
+            &[mobileMode="false"] {
+              font-size: 6vw;
+              font-weight: 900;
+            }
+          }
+        }
+
+        .tdName {
+          span {
+            display: flex;
+            justify-content: flex-start;
+            padding-top: 3%;
+            color: $mpi-background;
+            // text-shadow: -1px -1px 0 $warning, 1px -1px 0 $warning, -1px 1px 0 $warning,
+            //   1px 1px 0 $warning;
+            &[mobileMode="true"] {
+              font-size: 5vw;
+              font-weight: 900;
+            }
+            &[mobileMode="false"] {
+              font-size: 5vw;
+              font-weight: 900;
+            }
+          }
+        }
+
+        .tdObs {
+          span {
+            display: flex;
+            border: 1px solid $mpi-background;
+            border-left: 3px solid $mpi-background;
+            padding: 1%;
+            border-radius: 5px;
+            padding: 2%;
+            margin-top: 2%;
+            background-color: lighten($warning, 25%);
+            &[mobileMode="true"] {
+              font-size: 4.2vw;
+            }
+            &[mobileMode="false"] {
+              font-size: 4.2vw;
+            }
+          }
+        }
+      }
+
+      span {
+        color: $mpi-background;
+        text-transform: uppercase;
+        // &[mobileMode="true"] {
+        //   font-size: 4.2vw;
+        // }
+        // &[mobileMode="false"] {
+        //   font-size: 5vw;
+        // }
+      }
+    }
+  }
+}

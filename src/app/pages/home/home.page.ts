@@ -60,6 +60,6 @@ export class HomePage implements OnInit {
 
   async redirectToList(url: string): Promise<void> {
     await this.app.db.setVar('listarMode', url, this.title);
-    // this.redirectTo('listar');
+    await this.redirectTo('list');
   }
 }
