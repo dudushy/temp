@@ -129,7 +129,7 @@ export class LoginPage implements OnInit {
         await this.app.stopLoading();
 
         await this.app.showAlert('Login', 'Logado com sucesso!');
-        this.redirectTo('home');
+        this.redirectTo('menu');
 
         this.updateView();
       })

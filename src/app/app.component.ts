@@ -15,7 +15,7 @@ import { ScreenOrientation } from '@awesome-cordova-plugins/screen-orientation/n
 
 import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 
-import { APP_VERSION } from 'src/environments/version';
+import { APP_CONFIG } from 'src/environments/config';
 
 import { HTTP } from '@awesome-cordova-plugins/http/ngx';
 
@@ -30,10 +30,11 @@ import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 })
 export class AppComponent {
   title = 'app';
-  APP_NAME = 'template-app'
-  APP_VERSION = APP_VERSION;
-  HOME_PAGE = 'login';
-  HOME_DIR = 'template';
+
+  APP_NAME = APP_CONFIG.APP_NAME;
+  APP_VERSION = APP_CONFIG.APP_VERSION;
+  HOME_PAGE = APP_CONFIG.HOME_PAGE;
+  HOME_DIR = APP_CONFIG.HOME_DIR;
 
   devMode = false;
   mobileMode = false;
@@ -186,13 +187,13 @@ export class AppComponent {
     const futurePage = {
       //? currentPage -> futurePage
       '': this.HOME_PAGE,
-      'home': 'login',
+      'menu': 'login',
       'dev': 'login',
-      'test': 'home',
+      'test': 'menu',
 
-      'sync': 'home',
-      'list': 'home',
-      'record': 'home',
+      'sync': 'menu',
+      'list': 'menu',
+      'record': 'menu',
 
       'checklist': 'list'
     }[currentPage];

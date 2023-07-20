@@ -6,12 +6,12 @@ import { AppComponent } from 'src/app/app.component';
 import { Platform } from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
+  selector: 'app-menu',
+  templateUrl: './menu.page.html',
+  styleUrls: ['./menu.page.scss'],
 })
-export class HomePage implements OnInit {
-  title = 'home';
+export class MenuPage implements OnInit {
+  title = 'menu';
 
   loginData: any;
   str_nome: any;

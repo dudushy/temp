@@ -865,7 +865,7 @@ export class ChecklistPage implements OnInit {
 
     this.app.showAlert('Checklist', 'Checklist enviado com sucesso!');
 
-    this.redirectTo('home');
+    this.redirectTo('menu');
   }
 
   filterImagePath(imagePath: any) {

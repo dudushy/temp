@@ -5,7 +5,7 @@ import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 
 import { Platform } from '@ionic/angular';
 
-import { APP_VERSION } from 'src/environments/version';
+import { APP_CONFIG } from 'src/environments/config';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +13,8 @@ import { APP_VERSION } from 'src/environments/version';
 export class DbService {
   title = '@db';
 
-  APP_VERSION = APP_VERSION.replace(/[^0-9]/g, '');
-  DB_NAME = 'template';
+  APP_VERSION = APP_CONFIG.APP_VERSION.replace(/[^0-9]/g, '');
+  DB_NAME = APP_CONFIG.DB_NAME;
 
   constructor(
     private sqlite: SQLite,
@@ -39,7 +39,7 @@ export class DbService {
       await this.createTbImage();
       await this.createTbLog();
 
-      if (await this.getVar('BASE_URL', this.title) == null) await this.setVar('BASE_URL', 'http://webservice.spedo.com.br/api/supaglass/', this.title);
+      if (await this.getVar('BASE_URL', this.title) == null) await this.setVar('BASE_URL', APP_CONFIG.BASE_URL, this.title);
 
       if (await this.getVar('devMode', this.title) == null) await this.setVar('devMode', false, this.title);
 
@@ -405,7 +405,7 @@ export class DbService {
       'syncFinish CLOB,' +
       'syncTime CLOB,' +
 
-      'checklistMode CLOB,' +
+      'checklistType CLOB,' +
 
       'int_id_inspecao INTEGER,' +
       'int_id_usuario INTEGER,' +
@@ -534,7 +534,7 @@ export class DbService {
       'syncFinish,' +
       'syncTime,' +
 
-      'checklistMode,' +
+      'checklistType,' +
 
       'int_id_inspecao,' +
       'int_id_usuario,' +
@@ -598,7 +598,7 @@ export class DbService {
       'null,' +
       'null,' +
 
-      `${itemData.checklistMode ? '"' + itemData.checklistMode + '"' : null},` +
+      `${itemData.checklistType ? '"' + itemData.checklistType + '"' : null},` +
 
       `${itemData.int_id_inspecao ? '"' + itemData.int_id_inspecao + '"' : null},` +
       `${itemData.int_id_usuario ? '"' + itemData.int_id_usuario + '"' : null},` +
