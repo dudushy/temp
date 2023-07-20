@@ -160,16 +160,16 @@
   border-radius: 10px;
   &[aria-checked="true"] {
     .alert-radio-icon {
-      border-color: $mpi-background !important;
+      border-color: $primary !important;
 
       .alert-radio-inner {
-        background-color: $mpi-background !important;
+        background-color: $primary !important;
       }
     }
 
     .alert-radio-label {
       font-size: 5vw;
-      color: $mpi-background !important;
+      color: $primary !important;
     }
   }
 
