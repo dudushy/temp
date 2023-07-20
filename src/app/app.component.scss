@@ -14,12 +14,12 @@ ion-header {
     text-transform: uppercase;
     font-weight: 900;
     &[mobileMode="true"] {
-      font-size: 3.2vw;
-      margin-left: -15vw;
+      font-size: 4.2vw;
+      // margin-left: -15vw;
     }
     &[mobileMode="false"] {
-      font-size: 4vw;
-      margin-left: -7.5vw;
+      font-size: 5vw;
+      // margin-left: -7.5vw;
     }
   }
 
