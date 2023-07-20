@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <ion-accordion-group [multiple]="true">
-    <div *ngIf="checklistMode == null">
+    <div *ngIf="checklistMode != null">
       <ion-accordion class="checklistAccordion" id="accordion_dadosIniciais" value="dadosIniciais" (ionChange)="checkAccordion('accordion_dadosIniciais')">
         <ion-item slot="header">
           <ion-icon [attr.mobileMode]="app.mobileMode" name="person"></ion-icon>
@@ -225,7 +225,7 @@
       </ion-accordion>
     </div>
 
-    <div *ngIf="checklistMode == null">
+    <div *ngIf="checklistMode != null">
       <ion-accordion class="checklistAccordion" id="accordion_tecnico" value="tecnico" (ionChange)="checkAccordion('accordion_tecnico')">
         <ion-item slot="header">
           <ion-icon [attr.mobileMode]="app.mobileMode" name="construct"></ion-icon>
@@ -281,7 +281,7 @@
       </ion-accordion>
     </div>
 
-    <div *ngIf="checklistMode == null">
+    <div *ngIf="checklistMode != null">
       <ion-accordion class="checklistAccordion" id="accordion_entrega" value="entrega" (ionChange)="checkAccordion('accordion_entrega')">
         <ion-item slot="header">
           <ion-icon [attr.mobileMode]="app.mobileMode" name="bag-check"></ion-icon>
@@ -356,7 +356,7 @@
       </ion-accordion>
     </div>
 
-    <div *ngIf="checklistMode == null">
+    <div *ngIf="checklistMode != null">
       <ion-accordion class="checklistAccordion" id="accordion_pagamento" value="pagamento" (ionChange)="checkAccordion('accordion_pagamento')">
         <ion-item slot="header">
           <ion-icon [attr.mobileMode]="app.mobileMode" name="cash"></ion-icon>

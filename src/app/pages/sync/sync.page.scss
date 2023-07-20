@@ -8,8 +8,8 @@ ion-content {
 }
 
 #forceSyncButton {
-  background-color: $warning;
-  color: $mpi-background;
+  background-color: $primary;
+  color: $secondary;
   padding: 1%;
   margin: 0.1%;
   width: 100%;
@@ -24,7 +24,7 @@ ion-content {
   }
 
   ion-icon {
-    fill: $mpi-background;
+    fill: $secondary;
     position: absolute;
     &[mobileMode="true"] {
       font-size: 5vw;
@@ -45,7 +45,7 @@ ion-content {
   ion-title {
     margin-top: 5vh;
     text-align: center;
-    color: $mpi-background;
+    color: $secondary;
     &[mobileMode="true"] {
       font-size: 3vw;
     }
@@ -64,27 +64,27 @@ ion-content {
     tr {
       width: 100%;
       &[separator="true"] {
-        background: rgba($mpi-background, 0.2);
+        background: rgba($secondary, 0.2);
       }
       &[separator="false"] {
-        background: rgba($warning, 0.2);
+        background: rgba($primary, 0.2);
       }
     }
 
     th,
     td {
       padding: 0.5vw;
-      border-bottom: $mpi-background 2px solid;
-      border-right: $mpi-background 2px solid;
-      border-left: $mpi-background 2px solid;
+      border-bottom: $secondary 2px solid;
+      border-right: $secondary 2px solid;
+      border-left: $secondary 2px solid;
     }
 
     th {
       overflow-wrap: normal;
-      background: $mpi-background;
+      background: $secondary;
       color: $mpi-text;
-      border-right: $warning 2px solid;
-      border-left: $warning 2px solid;
+      border-right: $primary 2px solid;
+      border-left: $primary 2px solid;
       text-align: center;
       &[mobileMode="true"] {
         font-size: 3vw;
@@ -99,7 +99,7 @@ ion-content {
     }
 
     td {
-      color: darken($mpi-background, 10%);
+      color: darken($light, 10%);
     }
 
     #subtitles {
@@ -112,9 +112,9 @@ ion-content {
 
       td {
         border: none;
-        border-bottom: $warning 2px solid;
-        // background: lighten($mpi-background, 10%);
-        // background: $mpi-background;
+        border-bottom: $primary 2px solid;
+        // background: lighten($secondary, 10%);
+        // background: $secondary;
         background: $medium;
         color: $mpi-text;
         &[mobileMode="true"] {

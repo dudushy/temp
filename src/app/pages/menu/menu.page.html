@@ -10,29 +10,29 @@
     <img [attr.mobileMode]="app.mobileMode" src="assets/img/supaglass-logo.png">
 
     <span [attr.mobileMode]="app.mobileMode">
-      Olá, <b [attr.mobileMode]="app.mobileMode">{{str_nome}}</b>
+      Olá, <b [attr.mobileMode]="app.mobileMode">{{username}}</b>
     </span>
   </div>
 
   <div *ngIf="loginData?.length > 0">
-    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToList('recepcao')">
+    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToList('inicial')">
       <ion-icon [attr.mobileMode]="app.mobileMode" name="enter" slot="start"></ion-icon>
-      <ion-label [attr.mobileMode]="app.mobileMode">0 Inicial</ion-label>
+      <ion-label [attr.mobileMode]="app.mobileMode">Inicial</ion-label>
     </ion-button>
 
-    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToList('tecnico')">
+    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToList('desmontagem')">
       <ion-icon [attr.mobileMode]="app.mobileMode" name="shapes" slot="start"></ion-icon>
-      <ion-label [attr.mobileMode]="app.mobileMode">1 Desmontagem</ion-label>
+      <ion-label [attr.mobileMode]="app.mobileMode">Desmontagem</ion-label>
     </ion-button>
 
-    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToList('entrega')">
+    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToList('montagem')">
       <ion-icon [attr.mobileMode]="app.mobileMode" name="construct" slot="start"></ion-icon>
-      <ion-label [attr.mobileMode]="app.mobileMode">2 Montagem</ion-label>
+      <ion-label [attr.mobileMode]="app.mobileMode">Montagem</ion-label>
     </ion-button>
 
-    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToList('pagamento')">
+    <ion-button [attr.mobileMode]="app.mobileMode" class="checklistButtons" size="large" expand="block" (click)="redirectToList('encerrada')">
       <ion-icon [attr.mobileMode]="app.mobileMode" name="bag-check" slot="start"></ion-icon>
-      <ion-label [attr.mobileMode]="app.mobileMode">3 Encerrada</ion-label>
+      <ion-label [attr.mobileMode]="app.mobileMode">Encerrada</ion-label>
     </ion-button>
   </div>
 

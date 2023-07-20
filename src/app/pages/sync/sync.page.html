@@ -31,15 +31,15 @@
         <th [attr.mobileMode]="app.mobileMode">CHECKLIST</th>
         <th [attr.mobileMode]="app.mobileMode">MENSAGEM</th>
       </tr>
-      <!-- <tr *ngFor="let log of logArray | keyvalue : defaultOrder; let i = index" [attr.separator]="i % 2 === 0" id="{{log.value['id']}}">
+      <tr *ngFor="let log of logArray | keyvalue : defaultOrder; let i = index" [attr.separator]="i % 2 === 0" id="{{log.value['id']}}">
         <td class="tdId">
-          <span [attr.mobileMode]="app.mobileMode" class="spanField spanIdAgendamento">{{log.value['id_agendamento']}}</span>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanIdAgendamento">{{log.value['id_schedule']}}</span>
         </td>
         <td>
-          <span [attr.mobileMode]="app.mobileMode" class="spanField spanPlaca">{{log.value['placa']}}</span>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanPlaca">{{log.value['plate']}}</span>
         </td>
         <td class="tdDate">
-          <span [attr.mobileMode]="app.mobileMode" class="spanField spanData">{{log.value['data']}}</span>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanData">{{log.value['schedule']}}</span>
         </td>
         <td>
           <span [attr.mobileMode]="app.mobileMode" class="spanField spanStatus" *ngIf="log.value['status'] == 'Sincronizando'">🔄</span>
@@ -47,12 +47,12 @@
           <span [attr.mobileMode]="app.mobileMode" class="spanField spanStatus" *ngIf="log.value['status'] == 'Erro'">❌</span>
         </td>
         <td>
-          <span [attr.mobileMode]="app.mobileMode" class="spanField spanChecklist">{{log.value['checklist']}}</span>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanChecklist">{{log.value['checklistType']}}</span>
         </td>
         <td class="tdMsg">
-          <span [attr.mobileMode]="app.mobileMode" class="spanField spanMensagem">{{log.value['mensagem']}}</span>
+          <span [attr.mobileMode]="app.mobileMode" class="spanField spanMensagem">{{log.value['message']}}</span>
         </td>
-      </tr> -->
+      </tr>
     </table>
   </div>
 </ion-content>

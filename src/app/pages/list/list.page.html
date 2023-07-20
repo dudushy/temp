@@ -4,8 +4,6 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <!-- <ion-icon id="skip" *ngIf="debug.devMode && listarMode != 'recepcao'" name="flask" (click)="skip()"></ion-icon> -->
-
   <table>
     <tr>
       <td>
@@ -24,10 +22,6 @@
 
     <tr>
       <td>
-        <button [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'" id="buttonSemAgendamento" (click)="redirectTo('sem-agendamento')">
-          SEM AGENDAMENTO
-        </button>
-
         <ion-title [attr.mobileMode]="app.mobileMode">
           Relatórios: {{auxCount}}/{{totalCount}}
         </ion-title>
@@ -45,14 +39,9 @@
           </ion-title>
 
           <div id="arrayDiv" [attr.mobileMode]="app.mobileMode">
-            <!-- <div [attr.mobileMode]="app.mobileMode" class="arrayItem" *ngFor="let item of sampleArray | keyvalue : defaultOrder" (click)="saveAndRedirect(item.value)"> -->
             <div [attr.mobileMode]="app.mobileMode" class="arrayItem" *ngFor="let item of dataArray | keyvalue : defaultOrder" (click)="saveAndRedirect(item.value)">
               <div [attr.mobileMode]="app.mobileMode" class="itemId">
-                <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
-                  {{item.value['int_id']}}
-                </span>
-
-                <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
+                <span [attr.mobileMode]="app.mobileMode">
                   {{item.value['int_id']}}
                 </span>
 
@@ -63,47 +52,31 @@
                 <table>
                   <tr [attr.mobileMode]="app.mobileMode">
                     <td class="tdPlate">
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
-                        {{item.value['str_placa']}}
-                      </span>
-
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
+                      <span [attr.mobileMode]="app.mobileMode">
                         {{item.value['str_placa']}}
                       </span>
                     </td>
 
                     <td class="tdModel">
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
-                        {{item.value['str_familia']}}
-                      </span>
-
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
-                        {{item.value['str_veiculo']}}
+                      <span [attr.mobileMode]="app.mobileMode">
+                        {{item.value['str_modelo']}}
                       </span>
                     </td>
                   </tr>
 
                   <tr [attr.mobileMode]="app.mobileMode">
                     <td colspan="2" class="tdName">
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
-                        {{item.value['str_nomepessoa']}}
-                      </span>
-
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
-                        {{item.value['str_nome']}}
+                      <span [attr.mobileMode]="app.mobileMode">
+                        {{item.value['str_nome_razao']}}
                       </span>
                     </td>
                   </tr>
 
                   <tr [attr.mobileMode]="app.mobileMode">
                     <td colspan="2" class="tdObs">
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
-                        {{item.value['str_observacoes']}}
+                      <span [attr.mobileMode]="app.mobileMode">
+                        {{item.value['str_marca']}}
                       </span>
-
-                      <!-- <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
-                        {{item.value['str_observacoes']}}
-                      </span> -->
                     </td>
                   </tr>
                 </table>
@@ -121,13 +94,9 @@
           <div id="arrayDiv" [attr.mobileMode]="app.mobileMode">
             <div [attr.mobileMode]="app.mobileMode" class="arrayItem" *ngFor="let item of searchArray | keyvalue : defaultOrder" (click)="saveAndRedirect(item.value)">
               <div [attr.mobileMode]="app.mobileMode" class="itemId">
-                <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
+                <span [attr.mobileMode]="app.mobileMode">
                   {{item.value['int_id']}}
                 </span>
-
-                <!-- <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
-                  {{item.value['int_id']}}
-                </span> -->
 
                 <ion-icon [attr.mobileMode]="app.mobileMode" name="car"></ion-icon>
               </div>
@@ -136,47 +105,31 @@
                 <table>
                   <tr [attr.mobileMode]="app.mobileMode">
                     <td class="tdPlate">
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
+                      <span [attr.mobileMode]="app.mobileMode">
                         {{item.value['str_placa']}}
                       </span>
-
-                      <!-- <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
-                        {{item.value['str_placa']}}
-                      </span> -->
                     </td>
 
                     <td class="tdModel">
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
-                        {{item.value['str_familia']}}
-                      </span>
-
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
-                        {{item.value['str_veiculo']}}
+                      <span [attr.mobileMode]="app.mobileMode">
+                        {{item.value['str_modelo']}}
                       </span>
                     </td>
                   </tr>
 
                   <tr [attr.mobileMode]="app.mobileMode">
                     <td colspan="2" class="tdName">
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
-                        {{item.value['str_nomepessoa']}}
-                      </span>
-
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
-                        {{item.value['str_nome']}}
+                      <span [attr.mobileMode]="app.mobileMode">
+                        {{item.value['str_nome_razao']}}
                       </span>
                     </td>
                   </tr>
 
                   <tr [attr.mobileMode]="app.mobileMode">
                     <td colspan="2" class="tdObs">
-                      <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode == 'recepcao'">
-                        {{item.value['str_observacoes']}}
+                      <span [attr.mobileMode]="app.mobileMode">
+                        {{item.value['str_marca']}}
                       </span>
-
-                      <!-- <span [attr.mobileMode]="app.mobileMode" *ngIf="listarMode != 'recepcao'">
-                        {{item.value['str_observacoes']}}
-                      </span> -->
                     </td>
                   </tr>
                 </table>

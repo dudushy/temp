@@ -5,7 +5,7 @@ import { AppComponent } from 'src/app/app.component';
 
 import { Platform } from '@ionic/angular';
 
-import SignaturePad from 'signature_pad'; //* signaturePad
+import SignaturePad from 'signature_pad';
 
 @Component({
   selector: 'app-checklist',
@@ -257,8 +257,8 @@ export class ChecklistPage implements OnInit {
   accordion_pagamento = false;
   accordion_assinatura = false;
 
-  signaturePad: SignaturePad; //* signaturePad
-  @ViewChild('canvas') canvasEl: ElementRef; //* signaturePad
+  signaturePad: SignaturePad;
+  @ViewChild('canvas') canvasEl: ElementRef;
 
   constructor(
     public app: AppComponent,
@@ -490,10 +490,10 @@ export class ChecklistPage implements OnInit {
       this.accordion_pagamento = false;
       this.accordion_assinatura = false;
 
-      this.signaturePad = new SignaturePad(this.canvasEl.nativeElement); //* signaturePad
+      this.signaturePad = new SignaturePad(this.canvasEl.nativeElement);
 
-      const canvas = document.querySelector('canvas'); //* signaturePad
-      canvas.width = this.app.mobileMode ? window.innerWidth / 1.13 : window.innerWidth / 1.06; //* signaturePad
+      const canvas = document.querySelector('canvas');
+      canvas.width = this.app.mobileMode ? window.innerWidth / 1.13 : window.innerWidth / 1.06;
 
       this.updateView();
     });
@@ -515,7 +515,7 @@ export class ChecklistPage implements OnInit {
     console.log(`[${this.title}#checkAccordion] accordionId`, accordionId);
 
     if (accordionId == 'accordion_assinatura') {
-      this[accordionId] = !this.signaturePad.isEmpty(); //* signaturePad
+      this[accordionId] = !this.signaturePad.isEmpty();
     } else {
       const accordionElement = document.getElementById(accordionId);
       console.log(`[${this.title}#checkAccordion] accordionElement`, accordionElement);
@@ -568,15 +568,15 @@ export class ChecklistPage implements OnInit {
   clearPad() {
     console.log(`[${this.title}#clearPad]`);
 
-    this.signaturePad.clear(); //* signaturePad
+    this.signaturePad.clear();
   }
 
   async savePad() {
     console.log(`[${this.title}#savePad]`);
 
-    if (this.signaturePad.isEmpty()) { //* signaturePad
-      this.app.showAlert('Assinatura', 'Assinatura em branco, por favor assine!'); //* signaturePad
-      return new Promise((resolve) => resolve(false)); //* signaturePad
+    if (this.signaturePad.isEmpty()) {
+      this.app.showAlert('Assinatura', 'Assinatura em branco, por favor assine!');
+      return new Promise((resolve) => resolve(false));
     }
 
     // const signature = this.signaturePad.toDataURL();
@@ -585,23 +585,23 @@ export class ChecklistPage implements OnInit {
     // this.str_imagemassinatura = signature;
     // this.str_fotoassinatura = signature;
 
-    const signature = this.signaturePad.toDataURL(); //* signaturePad
-    console.log(`[${this.title}#savePad] signature`, signature); //* signaturePad
+    const signature = this.signaturePad.toDataURL();
+    console.log(`[${this.title}#savePad] signature`, signature);
 
-    const blob = await fetch(signature).then(res => res.blob()); //* signaturePad
-    console.log(`[${this.title}#savePad] blob`, blob); //* signaturePad
+    const blob = await fetch(signature).then(res => res.blob());
+    console.log(`[${this.title}#savePad] blob`, blob);
 
-    const finalPath = await this.app.blobToFile(blob, 'str_fotoassinatura.png', `${this.checklistFutureId || '0'}`); //* signaturePad
-    console.log(`[${this.title}#savePad] finalPath`, finalPath); //* signaturePad
+    const finalPath = await this.app.blobToFile(blob, 'str_fotoassinatura.png', `${this.checklistFutureId || '0'}`);
+    console.log(`[${this.title}#savePad] finalPath`, finalPath);
 
-    const win: any = window; //* signaturePad
-    const safeURL = win.Ionic.WebView.convertFileSrc(finalPath); //* signaturePad
-    console.log(`[${this.title}#savePad] safeURL`, safeURL); //* signaturePad
+    const win: any = window;
+    const safeURL = win.Ionic.WebView.convertFileSrc(finalPath);
+    console.log(`[${this.title}#savePad] safeURL`, safeURL);
 
     // // this.str_fotoassinatura = safeURL + `?temp=${new Date().getTime()}`; //! DEPRECATED
-    this.str_imagemassinatura = safeURL + `?temp=${new Date().getTime()}`; //* signaturePad
+    this.str_imagemassinatura = safeURL + `?temp=${new Date().getTime()}`;
 
-    return new Promise((resolve) => resolve(true)); //* signaturePad
+    return new Promise((resolve) => resolve(true));
   }
 
   sendPhoto(varname: any) {

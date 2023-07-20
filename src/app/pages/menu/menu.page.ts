@@ -14,7 +14,7 @@ export class MenuPage implements OnInit {
   title = 'menu';
 
   loginData: any;
-  str_nome: any;
+  username: any;
 
   constructor(
     public app: AppComponent,
@@ -38,8 +38,8 @@ export class MenuPage implements OnInit {
       console.log(`[${this.title}#ionViewDidEnter] loginData`, this.loginData);
 
       if (this.loginData.length > 0) {
-        this.str_nome = this.loginData[0].str_nome;
-        console.log(`[${this.title}#ionViewDidEnter] str_nome`, this.str_nome);
+        this.username = this.loginData[0].str_nome;
+        console.log(`[${this.title}#ionViewDidEnter] username`, this.username);
       }
 
       this.updateView();

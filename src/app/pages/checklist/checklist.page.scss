@@ -16,24 +16,24 @@ canvas {
 
 ion-accordion.accordion-collapsing,
 ion-accordion.accordion-collapsed {
-  border-bottom: 10px solid $mpi-background;
+  border-bottom: 10px solid $primary;
   margin-bottom: 1%;
 
   ion-item[slot="header"] {
     --background: $mpi-text;
     background: $mpi-text;
-    --color: $mpi-background;
-    color: $mpi-background;
+    --color: $primary;
+    color: $primary;
 
     ion-icon {
-      fill: $mpi-background;
+      fill: $primary;
       font-size: 9vw;
     }
 
     .custom-icon {
       font-size: 9vw;
-      color: $mpi-background;
-      // fill: $mpi-background;
+      color: $primary;
+      // fill: $primary;
     }
   }
 }
@@ -42,11 +42,11 @@ ion-accordion.accordion-expanding,
 ion-accordion.accordion-expanded {
   width: calc(100% - 10px);
   margin: 10px auto;
-  border-bottom: 5px dashed $mpi-background;
+  border-bottom: 5px dashed $primary;
 
   ion-item[slot="header"] {
-    --background: $mpi-background;
-    background: $mpi-background;
+    --background: $primary;
+    background: $primary;
     --color: $mpi-text;
     color: $mpi-text;
 
@@ -63,7 +63,7 @@ ion-accordion.accordion-expanded {
   }
 
   // ion-list[slot="content"] {
-  //   background: lighten($mpi-background, 30%);
+  //   background: lighten($primary, 30%);
   // }
 }
 
@@ -84,8 +84,8 @@ ion-accordion.accordion-expanded {
   margin-left: 4%;
   font-size: 5.5vw;
   font-weight: bold;
-  // --color: $mpi-background;
-  // color: $mpi-background;
+  // --color: $primary;
+  // color: $primary;
 }
 
 ion-list[slot="content"] {
@@ -108,7 +108,7 @@ ion-list[slot="content"] {
     padding-bottom: 3%;
     padding-top: 1%;
     &:not(.firstSegmentBreaker) {
-      border-top: 5px solid $mpi-background;
+      border-top: 5px solid $primary;
     }
   }
 
@@ -130,8 +130,8 @@ ion-list[slot="content"] {
     display: contents;
     // white-space: nowrap;
     // word-wrap: break-word;
-    --color: $mpi-background;
-    color: $mpi-background;
+    --color: $primary;
+    color: $primary;
     &[mobileMode="true"] {
       font-size: 4.1vw;
     }
@@ -234,13 +234,13 @@ ion-list[slot="content"] {
       font-weight: bold;
       // margin-bottom: 1%;
       padding-inline: 2%;
-      color: $mpi-background;
-      // border-bottom: 5px solid $mpi-background;
+      color: $primary;
+      // border-bottom: 5px solid $primary;
     }
 
     .photoInterface {
-      border-top: 5px solid $mpi-background;
-      background: lighten($mpi-background, 55%);
+      border-top: 5px solid $primary;
+      background: lighten($primary, 55%);
       border-radius: 15px;
       &[mobileMode="true"] {
         display: flex;
@@ -279,7 +279,7 @@ ion-list[slot="content"] {
 
       .photoButtons {
         // width: 50%;
-        // border-left: 5px solid $mpi-background;
+        // border-left: 5px solid $primary;
         &[mobileMode="true"] {
           height: 100%;
           margin: 0 auto;
@@ -374,9 +374,9 @@ ion-list[slot="content"] {
 }
 
 #submitButton {
-  --background: $warning;
-  background: $warning;
-  color: $mpi-background;
+  --background: $light;
+  background: $light;
+  color: $primary;
   // &[mobileMode="true"] {
   //   font-size: 13vw;
   // }
@@ -385,7 +385,7 @@ ion-list[slot="content"] {
   // }
 
   ion-icon {
-    fill: $mpi-background;
+    fill: $primary;
     &[mobileMode="true"] {
       font-size: 8vw;
     }
@@ -408,7 +408,7 @@ section {
   hr {
     margin: 0 auto;
     width: 90%;
-    border: 6px solid $mpi-background;
+    border: 6px solid $primary;
     border-radius: 5px;
     margin-block: 2%;
   }
@@ -419,133 +419,6 @@ section {
     }
     &[mobileMode="false"] {
       font-size: 7vw;
-    }
-  }
-}
-
-#paymentRevisionDiv {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-start;
-  border-left: 5px solid $mpi-background;
-  background-color: lighten($mpi-background, 55%);
-  padding: 2%;
-  margin: 2%;
-  border-radius: 10px;
-  &[mobileMode="true"] {
-    font-size: 4vw;
-  }
-  &[mobileMode="false"] {
-    font-size: 4vw;
-  }
-
-  #paymentPlateModel {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    padding-bottom: 2%;
-    border-bottom: 5px solid $mpi-background;
-    &[mobileMode="true"] {
-      font-size: 4vw;
-    }
-    &[mobileMode="false"] {
-      font-size: 4vw;
-    }
-
-    #labelPlate {
-      width: 50%;
-
-      span {
-        display: flex;
-        justify-content: center;
-        padding: 1%;
-        background-color: $warning;
-        color: $mpi-background;
-        border: 3px solid $mpi-background;
-        border-radius: 8px;
-        font-family: monospace;
-        &[mobileMode="true"] {
-          font-size: 7vw;
-        }
-        &[mobileMode="false"] {
-          font-size: 7vw;
-        }
-      }
-    }
-
-    #labelModel {
-      width: 50%;
-
-      span {
-        display: flex;
-        justify-content: center;
-        margin-inline: 3%;
-        // color: darken($warning, 10%);
-        color: $warning;
-        text-shadow: -2px -2px 0 $mpi-background, 2px -2px 0 $mpi-background, -2px 2px 0 $mpi-background,
-          2px 2px 0 $mpi-background;
-        &[mobileMode="true"] {
-          font-size: 6vw;
-          font-weight: 900;
-        }
-        &[mobileMode="false"] {
-          font-size: 6vw;
-          font-weight: 900;
-        }
-      }
-    }
-  }
-
-  #paymentName {
-    color: darken($mpi-background, 15%);
-    padding-top: 3%;
-    width: 100%;
-    &[mobileMode="true"] {
-      font-size: 4vw;
-    }
-    &[mobileMode="false"] {
-      font-size: 5vw;
-    }
-  }
-
-  #paymentValue {
-    color: $mpi-background;
-    width: 100%;
-    padding-top: 3%;
-    &[mobileMode="true"] {
-      font-size: 4vw;
-    }
-    &[mobileMode="false"] {
-      font-size: 7vw;
-    }
-  }
-
-  #paymentMethod {
-    color: $mpi-background;
-    text-shadow: -1px -1px 0 $success, 1px -1px 0 $success, -1px 1px 0 $success, 1px 1px 0 $success;
-    width: 100%;
-    list-style-type: circle;
-    &[mobileMode="true"] {
-      font-size: 4vw;
-    }
-    &[mobileMode="false"] {
-      font-size: 6vw;
-    }
-  }
-
-  #paymentId {
-    color: $medium;
-    width: 100%;
-    padding-top: 2%;
-    display: flex;
-    justify-content: flex-end;
-    &[mobileMode="true"] {
-      font-size: 4vw;
-    }
-    &[mobileMode="false"] {
-      font-size: 4vw;
     }
   }
 }
