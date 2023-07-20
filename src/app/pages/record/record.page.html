@@ -1,3 +1,66 @@
 <ion-content [fullscreen]="true">
-  {{title}}
+  <article id="emptyArrayArticle" *ngIf="checklistArray.length == 0">
+    <!-- <article id="emptyArrayArticle"> -->
+    <section id="emptyArraySection">
+      <ion-icon [attr.mobileMode]="app.mobileMode" name="sad"></ion-icon>
+
+      <span>
+        <p>
+          <b [attr.mobileMode]="app.mobileMode">Nenhum checklist encontrado.</b>
+        </p>
+      </span>
+    </section>
+  </article>
+
+  <article id="arrayArticle" *ngIf="checklistArray.length > 0">
+    <div id="infoDiv">
+      <section [attr.mobileMode]="app.mobileMode">
+        <p>Checklists encontrados:</p>
+        <b>{{checklistArray.length}}</b>
+      </section>
+
+      <section [attr.mobileMode]="app.mobileMode" id="syncedSection">
+        <p>Checklists Sincronizados:</p>
+        <b>{{countSynced}}</b>
+      </section>
+
+      <section [attr.mobileMode]="app.mobileMode" id="unsyncedSection">
+        <p>Checklists Não-Sincronizados:</p>
+        <b>{{countUnsynced}}</b>
+      </section>
+    </div>
+
+    <ion-button expand="block" color="success" (click)="wipeSyncedChecklists()">APAGAR SINCRONIZADOS</ion-button>
+
+    <ion-button *ngIf="devMode" expand="block" color="danger" (click)="wipeUnsyncedChecklists()">APAGAR NÃO SINCRONIZADOS</ion-button>
+
+    <ion-accordion-group [multiple]="true">
+      <ion-accordion id="accordion_{{checklist.value['id']}}" value="{{checklist.value['id']}}" *ngFor="let checklist of checklistArray | keyvalue : defaultOrder">
+        <ion-item slot="header">
+          <ion-icon [attr.mobileMode]="app.mobileMode" name="reader"></ion-icon>
+          <ion-label [attr.mobileMode]="app.mobileMode" class="accordionTitle">{{checklist.value['str_placa']}} | {{checklist.value['checklistMode']}}</ion-label>
+
+          <ion-avatar class="accordion-check-icon" slot="end">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="checklist.value['sync'] == '1'" class="accordion-check" src="assets/img/yes2.png">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="checklist.value['sync'] == '0'" class="accordion-check" src="assets/img/warning.png">
+          </ion-avatar>
+
+          <ion-icon [attr.mobileMode]="app.mobileMode" slot="end" name="arrow-down" class="ion-accordion-toggle-icon custom-icon"></ion-icon>
+        </ion-item>
+
+        <ion-list slot="content">
+          <article *ngFor="let checklistItem of checklist.value | keyvalue : defaultOrder">
+            <b [attr.mobileMode]="app.mobileMode" class="fieldKey" text-wrap position="fixed">{{checklistItem.key}}</b>
+
+            <div class="ifNotNullDiv" *ngIf="checklistItem.value != null">
+              <span *ngIf="isImage(checklistItem.key, checklistItem.value) == false" [attr.mobileMode]="app.mobileMode" class="fieldValue" text-wrap position="fixed">{{checklistItem.value}}</span>
+              <img *ngIf="isImage(checklistItem.key, checklistItem.value) == true" [attr.mobileMode]="app.mobileMode" class="fieldValueImage" src="{{checklistItem.value}}" alt="{{checklistItem.key}}">
+            </div>
+
+            <ion-icon [attr.mobileMode]="app.mobileMode" class="fieldNull" *ngIf="checklistItem.value == null" name="close-circle"></ion-icon>
+          </article>
+        </ion-list>
+      </ion-accordion>
+    </ion-accordion-group>
+  </article>
 </ion-content>

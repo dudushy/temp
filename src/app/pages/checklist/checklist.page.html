@@ -1,3 +1,414 @@
 <ion-content [fullscreen]="true">
-  {{title}}
+  <ion-accordion-group [multiple]="true">
+    <div *ngIf="checklistMode == null">
+      <ion-accordion class="checklistAccordion" id="accordion_dadosIniciais" value="dadosIniciais" (ionChange)="checkAccordion('accordion_dadosIniciais')">
+        <ion-item slot="header">
+          <ion-icon [attr.mobileMode]="app.mobileMode" name="person"></ion-icon>
+          <ion-label [attr.mobileMode]="app.mobileMode" class="accordionTitle">Dados Iniciais</ion-label>
+
+          <ion-avatar class="accordion-check-icon" slot="end">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_dadosIniciais == true" class="accordion-check" src="assets/img/yes2.png">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_dadosIniciais == false" class="accordion-check" src="assets/img/warning.png">
+          </ion-avatar>
+
+          <ion-icon [attr.mobileMode]="app.mobileMode" slot="end" name="arrow-down" class="ion-accordion-toggle-icon custom-icon"></ion-icon>
+        </ion-item>
+
+        <ion-list slot="content">
+          <ion-item>
+            <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Nome:</ion-label>
+            <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="str_nome" [(ngModel)]="str_nome" clearInput maxlength="256" type="text" placeholder="Insira o Nome"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Fone:</ion-label>
+            <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="str_fone" [(ngModel)]="str_fone" clearInput maxlength="256" type="text" placeholder="Insira o Fone"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Nível de Combustível:</ion-label>
+            <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="str_combustivel" [(ngModel)]="str_combustivel" clearInput maxlength="256" type="text" placeholder="Insira o nivel de combustível"></ion-input> -->
+
+            <ion-select [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="str_combustivel" [(ngModel)]="str_combustivel" placeholder="3/4" ok-text="Confirmar" cancel-text="Cancelar">
+              <ion-select-option *ngFor="let fuelLevel of fuelLevelArray | keyvalue : defaultOrder" value="{{fuelLevel.value}}">{{fuelLevel.value}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <div class="segmentDiv">
+              <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Tem documento?:</ion-label>
+              <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="str_adocumento" [(ngModel)]="str_adocumento" clearInput maxlength="256" type="text" placeholder="Tem documento?"></ion-input> -->
+
+              <ion-segment [attr.mobileMode]="app.mobileMode" class="fieldSegment checklistInput" id="str_adocumento" [(ngModel)]="str_adocumento" [scrollable]="true">
+                <ion-segment-button value="sim" layout="icon-bottom">
+                  <ion-label>SIM</ion-label>
+                  <ion-icon name="thumbs-up"></ion-icon>
+                </ion-segment-button>
+
+                <ion-segment-button value="nao" layout="icon-bottom">
+                  <ion-label>NÃO</ion-label>
+                  <ion-icon name="thumbs-down"></ion-icon>
+                </ion-segment-button>
+
+                <ion-segment-button value="avaria" layout="icon-bottom">
+                  <ion-label>AVARIA</ion-label>
+                  <ion-icon name="warning"></ion-icon>
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+          </ion-item>
+
+          <ion-item>
+            <div class="segmentDiv">
+              <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Pintura:</ion-label>
+
+              <ion-segment [attr.mobileMode]="app.mobileMode" class="fieldSegment checklistInput" id="str_pintura" [(ngModel)]="str_pintura" [scrollable]="true">
+                <ion-segment-button value="boa" layout="icon-bottom">
+                  <ion-label>BOA</ion-label>
+                  <ion-icon name="thumbs-up"></ion-icon>
+                </ion-segment-button>
+
+                <ion-segment-button value="media" layout="icon-bottom">
+                  <ion-label>MÉDIA</ion-label>
+                  <ion-icon name="warning"></ion-icon>
+                </ion-segment-button>
+
+                <ion-segment-button value="ruim" layout="icon-bottom">
+                  <ion-label>RUIM</ion-label>
+                  <ion-icon name="thumbs-down"></ion-icon>
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-accordion>
+
+      <ion-accordion class="checklistAccordion" id="accordion_pneus" value="pneus" (ionChange)="checkAccordion('accordion_pneus')">
+        <ion-item slot="header">
+          <ion-icon [attr.mobileMode]="app.mobileMode" name="disc"></ion-icon>
+          <ion-label [attr.mobileMode]="app.mobileMode" class="accordionTitle">Pneus</ion-label>
+
+          <ion-avatar class="accordion-check-icon" slot="end">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_pneus == true" class="accordion-check" src="assets/img/yes2.png">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_pneus == false" class="accordion-check" src="assets/img/warning.png">
+          </ion-avatar>
+
+          <ion-icon [attr.mobileMode]="app.mobileMode" slot="end" name="arrow-down" class="ion-accordion-toggle-icon custom-icon"></ion-icon>
+        </ion-item>
+
+        <ion-list slot="content">
+          <ion-item>
+            <!-- <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Pneus:</ion-label>
+            <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="str_pneus" [(ngModel)]="str_pneus" clearInput maxlength="256" type="text" placeholder="Condição dos pneus"></ion-input> -->
+
+            <div class="segmentDiv">
+              <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Condição dos pneus:</ion-label>
+              <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="str_pneus" [(ngModel)]="str_pneus" clearInput maxlength="256" type="text" placeholder="Tem documento?"></ion-input> -->
+
+              <ion-segment [attr.mobileMode]="app.mobileMode" class="fieldSegment checklistInput" id="str_pneus" [(ngModel)]="str_pneus" [scrollable]="true">
+                <ion-segment-button value="boa" layout="icon-bottom">
+                  <ion-label>BOA</ion-label>
+                  <ion-icon name="thumbs-up"></ion-icon>
+                </ion-segment-button>
+
+                <ion-segment-button value="media" layout="icon-bottom">
+                  <ion-label>MÉDIA</ion-label>
+                  <ion-icon name="warning"></ion-icon>
+                </ion-segment-button>
+
+                <ion-segment-button value="ruim" layout="icon-bottom">
+                  <ion-label>RUIM</ion-label>
+                  <ion-icon name="thumbs-down"></ion-icon>
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+          </ion-item>
+
+          <section>
+            <hr>
+
+            <ion-title [attr.mobileMode]="app.mobileMode" class="sectionTitle">
+              Traseiro Esquerdo
+            </ion-title>
+
+            <div [attr.mobileMode]="app.mobileMode" class="photoDiv">
+              <h1 [attr.mobileMode]="app.mobileMode" class="photoTitle">Pneu Traseiro Esquerdo:</h1>
+              <div [attr.mobileMode]="app.mobileMode" [attr.isActive]="str_fotopneutraseiroesquerdo != null" class="photoInterface">
+                <img [attr.mobileMode]="app.mobileMode" *ngIf="str_fotopneutraseiroesquerdo" [src]="str_fotopneutraseiroesquerdo" class="fieldInput photo isActive" id="str_fotopneutraseiroesquerdo" (click)="takePhoto('str_fotopneutraseiroesquerdo')">
+                <img [attr.mobileMode]="app.mobileMode" *ngIf="!str_fotopneutraseiroesquerdo" src="assets/svg/camera.svg" class="fieldInput photo" id="str_fotopneutraseiroesquerdo" (click)="takePhoto('str_fotopneutraseiroesquerdo')">
+
+                <div [attr.mobileMode]="app.mobileMode" *ngIf="str_fotopneutraseiroesquerdo" class="photoButtons">
+                  <button [attr.mobileMode]="app.mobileMode" class="deleteButtonTire" (click)="deletePhoto('str_fotopneutraseiroesquerdo')">
+                    <ion-icon [attr.mobileMode]="app.mobileMode" name="trash"></ion-icon>
+                  </button>
+
+                  <button *ngIf="syncedPhotosArray.indexOf('str_fotopneutraseiroesquerdo') == -1" [attr.mobileMode]="app.mobileMode" class="sendButtonTire" (click)="sendPhoto('str_fotopneutraseiroesquerdo')">
+                    <ion-icon [attr.mobileMode]="app.mobileMode" name="cloud-upload"></ion-icon>
+                  </button>
+                  <button *ngIf="syncedPhotosArray.indexOf('str_fotopneutraseiroesquerdo') != -1" [attr.mobileMode]="app.mobileMode" class="sendButtonTire" (click)="app.showAlert('Pneu', 'Imagem já enviada!')">
+                    <ion-icon [attr.mobileMode]="app.mobileMode" name="cloud-done"></ion-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="tireSizeDiv">
+              <ion-item>
+                <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Largura:</ion-label>
+                <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="tireWidth_traseiroEsquerdo" [(ngModel)]="tireWidth_traseiroEsquerdo" clearInput maxlength="256" type="number" placeholder="Insira a largura"></ion-input> -->
+
+                <ion-select [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="tireWidth_traseiroEsquerdo" [(ngModel)]="tireWidth_traseiroEsquerdo" placeholder="500" ok-text="Confirmar" cancel-text="Cancelar">
+                  <ion-select-option *ngFor="let tireWidth of tireWidthArray | keyvalue : defaultOrder" value="{{tireWidth.value}}">{{tireWidth.value}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Altura:</ion-label>
+                <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="tireHeight_traseiroEsquerdo" [(ngModel)]="tireHeight_traseiroEsquerdo" clearInput maxlength="256" type="number" placeholder="Insira a altura"></ion-input> -->
+
+                <ion-select [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="tireHeight_traseiroEsquerdo" [(ngModel)]="tireHeight_traseiroEsquerdo" placeholder="55" ok-text="Confirmar" cancel-text="Cancelar">
+                  <ion-select-option *ngFor="let tireHeight of tireHeightArray | keyvalue : defaultOrder" value="{{tireHeight.value}}">{{tireHeight.value}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="fixed">Aro:</ion-label>
+                <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="tireRim_traseiroEsquerdo" [(ngModel)]="tireRim_traseiroEsquerdo" clearInput maxlength="256" type="number" placeholder="Insira o aro"></ion-input>
+              </ion-item>
+            </div>
+          </section>
+        </ion-list>
+      </ion-accordion>
+
+      <ion-accordion class="checklistAccordion" id="accordion_fotos" value="fotos" (ionChange)="checkAccordion('accordion_fotos')">
+        <ion-item slot="header">
+          <ion-icon [attr.mobileMode]="app.mobileMode" name="images"></ion-icon>
+          <ion-label [attr.mobileMode]="app.mobileMode" class="accordionTitle">Fotos</ion-label>
+
+          <ion-avatar class="accordion-check-icon" slot="end">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_fotos == true" class="accordion-check" src="assets/img/yes2.png">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_fotos == false" class="accordion-check" src="assets/img/warning.png">
+          </ion-avatar>
+
+          <ion-icon [attr.mobileMode]="app.mobileMode" slot="end" name="arrow-down" class="ion-accordion-toggle-icon custom-icon"></ion-icon>
+        </ion-item>
+
+        <ion-list slot="content">
+          <div [attr.mobileMode]="app.mobileMode" class="photoDiv">
+            <h1 [attr.mobileMode]="app.mobileMode" class="photoTitle">Placa:</h1>
+            <div [attr.mobileMode]="app.mobileMode" [attr.isActive]="str_fotoplaca != null" class="photoInterface">
+              <img [attr.mobileMode]="app.mobileMode" *ngIf="str_fotoplaca" [src]="str_fotoplaca" class="fieldInput photo isActive" id="str_fotoplaca" (click)="takePhoto('str_fotoplaca')">
+              <img [attr.mobileMode]="app.mobileMode" *ngIf="!str_fotoplaca" src="assets/svg/camera.svg" class="fieldInput photo" id="str_fotoplaca" (click)="takePhoto('str_fotoplaca')">
+
+              <div [attr.mobileMode]="app.mobileMode" *ngIf="str_fotoplaca" class="photoButtons">
+                <button [attr.mobileMode]="app.mobileMode" class="deleteButton" (click)="deletePhoto('str_fotoplaca')">
+                  <ion-icon [attr.mobileMode]="app.mobileMode" name="trash"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div [attr.mobileMode]="app.mobileMode" class="photoDiv">
+            <h1 [attr.mobileMode]="app.mobileMode" class="photoTitle">Dianteira:</h1>
+            <div [attr.mobileMode]="app.mobileMode" [attr.isActive]="str_fotodianteira != null" class="photoInterface">
+              <img [attr.mobileMode]="app.mobileMode" *ngIf="str_fotodianteira" [src]="str_fotodianteira" class="fieldInput photo isActive" id="str_fotodianteira" (click)="takePhoto('str_fotodianteira')">
+              <img [attr.mobileMode]="app.mobileMode" *ngIf="!str_fotodianteira" src="assets/svg/camera.svg" class="fieldInput photo" id="str_fotodianteira" (click)="takePhoto('str_fotodianteira')">
+
+              <div [attr.mobileMode]="app.mobileMode" *ngIf="str_fotodianteira" class="photoButtons">
+                <button [attr.mobileMode]="app.mobileMode" class="deleteButton" (click)="deletePhoto('str_fotodianteira')">
+                  <ion-icon [attr.mobileMode]="app.mobileMode" name="trash"></ion-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ion-list>
+      </ion-accordion>
+    </div>
+
+    <div *ngIf="checklistMode == null">
+      <ion-accordion class="checklistAccordion" id="accordion_tecnico" value="tecnico" (ionChange)="checkAccordion('accordion_tecnico')">
+        <ion-item slot="header">
+          <ion-icon [attr.mobileMode]="app.mobileMode" name="construct"></ion-icon>
+          <ion-label [attr.mobileMode]="app.mobileMode" class="accordionTitle">Tecnico</ion-label>
+
+          <ion-avatar class="accordion-check-icon" slot="end">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_tecnico == true" class="accordion-check" src="assets/img/yes2.png">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_tecnico == false" class="accordion-check" src="assets/img/warning.png">
+          </ion-avatar>
+
+          <ion-icon [attr.mobileMode]="app.mobileMode" slot="end" name="arrow-down" class="ion-accordion-toggle-icon custom-icon"></ion-icon>
+        </ion-item>
+
+        <ion-list slot="content">
+          <div class="segmentBreaker firstSegmentBreaker">
+            <ion-item class="noMargin">
+              <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="stacked">O que o cliente solicitou foi realizado?</ion-label>
+              <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="int_solicitou_realizado" [(ngModel)]="int_solicitou_realizado" clearInput maxlength="256" type="number" placeholder="Insira o Solicitou Realizado"></ion-input> -->
+            </ion-item>
+
+            <ion-segment [attr.mobileMode]="app.mobileMode" class="fieldSegment checklistInput" id="int_solicitou_realizado" [(ngModel)]="int_solicitou_realizado" [scrollable]="true">
+              <ion-segment-button value="1" layout="icon-bottom">
+                <ion-label>SIM</ion-label>
+                <ion-icon name="thumbs-up"></ion-icon>
+              </ion-segment-button>
+
+              <ion-segment-button value="0" layout="icon-bottom">
+                <ion-label>NÃO</ion-label>
+                <ion-icon name="thumbs-down"></ion-icon>
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+
+          <div class="segmentBreaker">
+            <ion-item class="noMargin">
+              <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="stacked">Há necessidade de orçamento complementar?</ion-label>
+              <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="int_orcamento_complementar" [(ngModel)]="int_orcamento_complementar" clearInput maxlength="256" type="number" placeholder="Insira o Orçamento Complementar"></ion-input> -->
+            </ion-item>
+
+            <ion-segment [attr.mobileMode]="app.mobileMode" class="fieldSegment checklistInput" id="int_orcamento_complementar" [(ngModel)]="int_orcamento_complementar" [scrollable]="true">
+              <ion-segment-button value="1" layout="icon-bottom">
+                <ion-label>SIM</ion-label>
+                <ion-icon name="thumbs-up"></ion-icon>
+              </ion-segment-button>
+
+              <ion-segment-button value="0" layout="icon-bottom">
+                <ion-label>NÃO</ion-label>
+                <ion-icon name="thumbs-down"></ion-icon>
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+        </ion-list>
+      </ion-accordion>
+    </div>
+
+    <div *ngIf="checklistMode == null">
+      <ion-accordion class="checklistAccordion" id="accordion_entrega" value="entrega" (ionChange)="checkAccordion('accordion_entrega')">
+        <ion-item slot="header">
+          <ion-icon [attr.mobileMode]="app.mobileMode" name="bag-check"></ion-icon>
+          <ion-label [attr.mobileMode]="app.mobileMode" class="accordionTitle">Entrega</ion-label>
+
+          <ion-avatar class="accordion-check-icon" slot="end">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_entrega == true" class="accordion-check" src="assets/img/yes2.png">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_entrega == false" class="accordion-check" src="assets/img/warning.png">
+          </ion-avatar>
+
+          <ion-icon [attr.mobileMode]="app.mobileMode" slot="end" name="arrow-down" class="ion-accordion-toggle-icon custom-icon"></ion-icon>
+        </ion-item>
+
+        <ion-list slot="content">
+          <div class="segmentBreaker">
+            <ion-item class="noMargin">
+              <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="stacked">Os servicos solicitados, foram executados?</ion-label>
+              <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="int_solicitou_executado" [(ngModel)]="int_solicitou_executado" clearInput maxlength="256" type="number" placeholder="Insira o Solicitou Executado"></ion-input> -->
+            </ion-item>
+
+            <ion-segment [attr.mobileMode]="app.mobileMode" class="fieldSegment checklistInput" id="int_solicitou_executado" [(ngModel)]="int_solicitou_executado" [scrollable]="true">
+              <ion-segment-button value="1" layout="icon-bottom">
+                <ion-label>SIM</ion-label>
+                <ion-icon name="thumbs-up"></ion-icon>
+              </ion-segment-button>
+
+              <ion-segment-button value="0" layout="icon-bottom">
+                <ion-label>NÃO</ion-label>
+                <ion-icon name="thumbs-down"></ion-icon>
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+
+          <div class="segmentBreaker">
+            <ion-item class="noMargin">
+              <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="stacked">Houve apresentação de orçamento complemtar?</ion-label>
+              <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="int_apresentacao_orcamento_complementar" [(ngModel)]="int_apresentacao_orcamento_complementar" clearInput maxlength="256" type="number" placeholder="Insira o Apresentação Orçamento Complementar"></ion-input> -->
+            </ion-item>
+
+            <ion-segment [attr.mobileMode]="app.mobileMode" class="fieldSegment checklistInput" id="int_apresentacao_orcamento_complementar" [(ngModel)]="int_apresentacao_orcamento_complementar" [scrollable]="true">
+              <ion-segment-button value="1" layout="icon-bottom">
+                <ion-label>SIM</ion-label>
+                <ion-icon name="thumbs-up"></ion-icon>
+              </ion-segment-button>
+
+              <ion-segment-button value="0" layout="icon-bottom">
+                <ion-label>NÃO</ion-label>
+                <ion-icon name="thumbs-down"></ion-icon>
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+
+          <div class="segmentBreaker">
+            <ion-item class="noMargin">
+              <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="stacked">O orcamento complementar foi aprovado?</ion-label>
+              <!-- <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="int_aprovado_orcamento_complementar" [(ngModel)]="int_aprovado_orcamento_complementar" clearInput maxlength="256" type="number" placeholder="Insira o Aprovado Orçamento Complementar"></ion-input> -->
+            </ion-item>
+
+            <ion-segment [attr.mobileMode]="app.mobileMode" class="fieldSegment checklistInput" id="int_aprovado_orcamento_complementar" [(ngModel)]="int_aprovado_orcamento_complementar" [scrollable]="true">
+              <ion-segment-button value="1" layout="icon-bottom">
+                <ion-label>SIM</ion-label>
+                <ion-icon name="thumbs-up"></ion-icon>
+              </ion-segment-button>
+
+              <ion-segment-button value="0" layout="icon-bottom">
+                <ion-label>NÃO</ion-label>
+                <ion-icon name="thumbs-down"></ion-icon>
+              </ion-segment-button>
+            </ion-segment>
+          </div>
+        </ion-list>
+      </ion-accordion>
+    </div>
+
+    <div *ngIf="checklistMode == null">
+      <ion-accordion class="checklistAccordion" id="accordion_pagamento" value="pagamento" (ionChange)="checkAccordion('accordion_pagamento')">
+        <ion-item slot="header">
+          <ion-icon [attr.mobileMode]="app.mobileMode" name="cash"></ion-icon>
+          <ion-label [attr.mobileMode]="app.mobileMode" class="accordionTitle">Pagamento</ion-label>
+
+          <ion-avatar class="accordion-check-icon" slot="end">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_pagamento == true" class="accordion-check" src="assets/img/yes2.png">
+            <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_pagamento == false" class="accordion-check" src="assets/img/warning.png">
+          </ion-avatar>
+
+          <ion-icon [attr.mobileMode]="app.mobileMode" slot="end" name="arrow-down" class="ion-accordion-toggle-icon custom-icon"></ion-icon>
+        </ion-item>
+
+        <ion-list slot="content">
+          <ion-item>
+            <ion-label [attr.mobileMode]="app.mobileMode" class="fieldLabel" text-wrap position="stacked">Valor:</ion-label>
+            <ion-input [attr.mobileMode]="app.mobileMode" class="fieldInput checklistInput" id="valor" [(ngModel)]="valor" clearInput maxlength="256" type="number" placeholder="Insira o Valor"></ion-input>
+          </ion-item>
+        </ion-list>
+      </ion-accordion>
+    </div>
+
+    <ion-accordion class="checklistAccordion" id="accordion_assinatura" value="assinatura">
+      <ion-item slot="header">
+        <ion-icon [attr.mobileMode]="app.mobileMode" name="create"></ion-icon>
+        <ion-label [attr.mobileMode]="app.mobileMode" class="accordionTitle">Assinatura</ion-label>
+
+        <ion-avatar class="accordion-check-icon" slot="end">
+          <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_assinatura == true" class="accordion-check" src="assets/img/yes2.png">
+          <img [attr.mobileMode]="app.mobileMode" *ngIf="accordion_assinatura == false" class="accordion-check" src="assets/img/warning.png">
+        </ion-avatar>
+
+        <ion-icon [attr.mobileMode]="app.mobileMode" slot="end" name="arrow-down" class="ion-accordion-toggle-icon custom-icon"></ion-icon>
+      </ion-item>
+
+      <ion-list slot="content">
+        <ion-item>
+          <button [attr.mobileMode]="app.mobileMode" id="clearPadButton" (click)="clearPad()" (click)="checkAccordion('accordion_assinatura')">
+            <ion-icon [attr.mobileMode]="app.mobileMode" name="reload"></ion-icon>
+            <ion-label [attr.mobileMode]="app.mobileMode">Limpar</ion-label>
+          </button>
+        </ion-item>
+
+        <ion-item>
+          <canvas #canvas (touchmove)="checkAccordion('accordion_assinatura')"></canvas>
+        </ion-item>
+      </ion-list>
+    </ion-accordion>
+  </ion-accordion-group>
+
+    <ion-button [disabled]="accordion_assinatura == false" [attr.mobileMode]="app.mobileMode" id="submitButton" size="large" expand="block" (click)="submitChecklist()">
+      <ion-icon [attr.mobileMode]="app.mobileMode" name="send" slot="start"></ion-icon>
+      <ion-label [attr.mobileMode]="app.mobileMode">Enviar</ion-label>
+    </ion-button>
 </ion-content>
