@@ -42,8 +42,10 @@ export class AppComponent {
     };
 
     this.exampleArray = [
-      { os: 1, alias: 'one', date: 'one', oi: 'one', xau: 'one' },
-      { os: 2, alias: 'tchu', date: 'tchu', oi: 'tchu', xau: 'tchu' },
+      { os: 1, alias: 'one', date: 'one', oi: 'one', xau: 'one', blob: 'assets/imgs/gear1.jpg' },
+      { os: 2, alias: 'tchu', date: 'tchu', oi: 'tchu', xau: 'tchu', blob: 'assets/imgs/gear2.png' },
+      { os: 3, alias: 'treix', date: 'treix', oi: 'treix', xau: 'treix', blob: 'assets/imgs/gear3.jpg' },
+      { os: 4, alias: 'quadraddo', date: 'quadraddo', oi: 'quadraddo', xau: 'quadraddo', blob: 'assets/imgs/gear4.jpg' },
     ];
     console.log(`[${this.title}#constructor] exampleArray`, this.exampleArray);
   }
@@ -95,5 +97,12 @@ export class AppComponent {
     } else {
       this.selectedArrayItem = itemIndex;
     }
+  }
+
+  openPdf() {
+    console.log(`[${this.title}#openPdf]`);
+
+    const pdfWindow = window.open('', '_blank');
+    pdfWindow.document.write('<iframe width="100%" height="100%" src="assets/pdf/01.pdf"></iframe>');
   }
 }
