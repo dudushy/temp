@@ -1,0 +1,53 @@
+$primary: #3880ff;
+$secondary: #3dc2ff;
+$tertiary: #5260ff;
+$success: #2dd36f;
+$warning: #ffc409;
+$danger: #eb445a;
+$dark: #222428;
+$medium: #92949c;
+$light: #f4f5f8;
+
+// @font-face {
+//   font-family: "Bungee";
+//   src: url("./assets/fonts/Bungee-Regular.ttf");
+// }
+
+html, body, app-root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow-x: hidden;
+  background: linear-gradient(45deg, $primary, $secondary, $tertiary);
+  overflow-y: visible;
+}
+
+* {
+  font-size: clamp(2vmax, 2vw, 1rem);
+  font-family: monospace;
+  transition: 50ms all;
+  background: $primary;
+  color: $light;
+}
+
+//! CUSTOM SCROLLBAR [START]
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: $medium;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $light;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $dark;
+}
+//! CUSTOM SCROLLBAR [FINISH]

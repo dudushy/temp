@@ -1,36 +1,111 @@
-<ion-app>
-  <main id="app-content">
-    <ion-header [attr.mobileMode]="mobileMode">
-      <ion-toolbar>
-        <ion-buttons slot="start" [attr.hideMe]="router.url.replace('/', '') == 'login'">
-          <ion-button [attr.mobileMode]="mobileMode" (click)="goBack()">
-            <ion-icon [attr.mobileMode]="mobileMode" name="caret-back"></ion-icon>
-            <!-- <ion-label>Voltar</ion-label> -->
-          </ion-button>
-        </ion-buttons>
+<div id="searchDiv-wrapper">
+  <div id="sideMenu">
+    <div id="searchBar-wrapper">
+      <img id="searchIcon" src="assets/svgs/search.svg" alt="search-icon">
+      <input id="searchBar" type="text" placeholder="Search">
+      <button id="searchButton">
+        REQUEST
+      </button>
+    </div>
 
-        <ion-title [attr.mobileMode]="mobileMode">
-          {{router.url.replace('/', '')}}
-        </ion-title>
+    <table id="arrayTable">
+      <tr id="titleRow">
+        <td>
+          a
+        </td>
+        <td>
+          b
+        </td>
+        <td>
+          c
+        </td>
+        <td>
+          d
+        </td>
+        <td>
+          e
+        </td>
+      </tr>
 
-        <ion-buttons slot="end">
-          <ion-button [attr.mobileMode]="mobileMode" (click)="toggleSettings()">
-            <ion-icon [attr.mobileMode]="mobileMode" name="cog"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+      <!-- <tr *ngFor="fakeArray"></tr> -->
 
-    <ion-router-outlet [attr.mobileMode]="mobileMode"></ion-router-outlet>
+      <tr class="dataRow">
+        <td>
+          0
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          3
+        </td>
+        <td>
+          4
+        </td>
+      </tr>
 
-    <ion-footer [attr.mobileMode]="mobileMode">
-      <ion-toolbar [attr.mobileMode]="mobileMode">
-        Desenvolvido por <b>Upriset</b>
-      </ion-toolbar>
-    </ion-footer>
-  </main>
+      <tr class="dataRow">
+        <td>
+          0
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          3
+        </td>
+        <td>
+          4
+        </td>
+      </tr>
 
-  <app-settings></app-settings>
+      <tr class="dataRow">
+        <td>
+          0
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          3
+        </td>
+        <td>
+          4
+        </td>
+      </tr>
 
-  <app-popover></app-popover>
-</ion-app>
+      <tr class="dataRow">
+        <td>
+          0
+        </td>
+        <td>
+          1
+        </td>
+        <td>
+          2
+        </td>
+        <td>
+          3
+        </td>
+        <td>
+          4
+        </td>
+      </tr>
+    </table>
+
+    <button id="downloadButton">DOWNLOAD</button>
+  </div>
+
+  <div id="imagePreview-wrapper">
+    <img id="imagePreview" src="assets/imgs/gear1.jpg" alt="image-preview">
+  </div>
+</div>

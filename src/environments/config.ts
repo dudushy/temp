@@ -1,8 +1,9 @@
 export const APP_CONFIG = {
-  APP_NAME: 'supaglass',
+  APP_NAME: 'temp',
+  APP_ID: 'temp',
   APP_VERSION: '0.0.1',
-  HOME_PAGE: 'login',
-  HOME_DIR: 'supaglass',
-  DB_NAME: 'supaglass',
-  BASE_URL: 'http://webservice.spedo.com.br/api/supaglass/',
+  HOME_PAGE: 'home',
+  HOME_DIR: 'temp',
+  DB_NAME: 'temp',
+  BASE_URL: 'http://***.***.***.***:****/',
 };
