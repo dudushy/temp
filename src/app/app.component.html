@@ -22,7 +22,7 @@
       </div>
 
       <div id="dataRow-wrapper">
-        <div *ngFor="let item of exampleArray | keyvalue : defaultOrder" class="dataRow arrayDivRow" id="{{item.key}}" [attr.isSelected]="item.key == selectedArrayItem" >
+        <div *ngFor="let item of exampleArray | keyvalue : defaultOrder" class="dataRow arrayDivRow" id="dataRowItem-{{item.key}}" [attr.isSelected]="item.key == selectedArrayItem" (click)="toggleSelectedItem(item.key)">
           <span>{{item.value['os']}}</span>
           <span>{{item.value['alias']}}</span>
           <span>{{item.value['date']}}</span>
