@@ -15,7 +15,7 @@ export class AppComponent {
 
   window = window;
 
-  exampleArray: any [];
+  exampleArray: any[];
   selectedArrayItem: any = null;
 
   constructor(
@@ -74,7 +74,8 @@ export class AppComponent {
       alias: searchBarInput.value,
       date: searchBarInput.value,
       oi: searchBarInput.value,
-      xau: searchBarInput.value
+      xau: searchBarInput.value,
+      blob: 'https://png.pngtree.com/element_our/20190531/ourmid/pngtree-gear-tool-image_1276937.jpg'
     });
 
     console.log(`[${this.title}#addRecord] exampleArray`, this.exampleArray);
@@ -109,7 +110,17 @@ export class AppComponent {
   openPdf() {
     console.log(`[${this.title}#openPdf]`);
 
-    const pdfWindow = window.open('', '_blank');
-    pdfWindow.document.write('<iframe width="100%" height="100%" src="assets/pdf/01.pdf"></iframe>');
+    // window.open('https://www.africau.edu/images/default/sample.pdf', '_blank');
+    window.open('assets/pdfs/sample.pdf', '_blank');
+
+    // const pdfWindow = window.open('', '_blank');
+    // pdfWindow.document.write('<iframe width="100%" height="100%" src="assets/pdf/01.pdf"></iframe>');
+    // pdfWindow.document.write('https://www.africau.edu/images/default/sample.pdf');
+
+    // const link = document.createElement('a');
+    // link.download = 'filename.pdf';
+    // link.target = 'blank';
+    // link.href = 'assets/pdfs/sample.pdf';
+    // link.click();
   }
 }
