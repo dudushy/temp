@@ -77,6 +77,8 @@ export class AppComponent {
       xau: searchBarInput.value
     });
 
+    console.log(`[${this.title}#addRecord] exampleArray`, this.exampleArray);
+
     this.updateView(this.title);
   }
 
@@ -86,6 +88,9 @@ export class AppComponent {
     if (this.selectedArrayItem === null) return;
 
     delete this.exampleArray[this.selectedArrayItem];
+
+    console.log(`[${this.title}#removeRecord] exampleArray`, this.exampleArray);
+
     this.updateView(this.title);
   }
 
