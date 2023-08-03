@@ -36,6 +36,6 @@
   </div>
 
   <div id="imagePreview-wrapper">
-    <img *ngIf="selectedArrayItem != null" id="imagePreview" [src]="exampleArray[selectedArrayItem].blob" alt="image-preview" (click)="openPdf()">
+    <img *ngIf="selectedArrayItem != null && exampleArray[selectedArrayItem].blob" id="imagePreview" [src]="exampleArray[selectedArrayItem].blob" alt="image-preview" (click)="openPdf()">
   </div>
 </div>
