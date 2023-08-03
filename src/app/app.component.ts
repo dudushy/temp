@@ -44,8 +44,6 @@ export class AppComponent {
     this.exampleArray = [
       { os: 1, alias: 'one', date: 'one', oi: 'one', xau: 'one' },
       { os: 2, alias: 'tchu', date: 'tchu', oi: 'tchu', xau: 'tchu' },
-      { os: 3, alias: 'three', date: 'three', oi: 'three', xau: 'three' },
-      { os: 4, alias: 'four', date: 'four', oi: 'four', xau: 'four' },
     ];
     console.log(`[${this.title}#constructor] exampleArray`, this.exampleArray);
   }
@@ -65,10 +63,37 @@ export class AppComponent {
 
     if (!searchBarInput) return;
 
+    if (!searchBarInput.value || searchBarInput.value == '') return;
+
     console.log(`[${this.title}#addRecord] searchBarInput.value`, searchBarInput.value);
+
+    this.exampleArray.push({
+      os: this.exampleArray.length + 1,
+      alias: searchBarInput.value,
+      date: searchBarInput.value,
+      oi: searchBarInput.value,
+      xau: searchBarInput.value
+    });
+
+    this.updateView(this.title);
   }
 
   removeRecord() {
-    console.log(`[${this.title}#removeRecord]`);
+    console.log(`[${this.title}#removeRecord] selectedArrayItem`, this.selectedArrayItem);
+
+    if (this.selectedArrayItem === null) return;
+
+    delete this.exampleArray[this.selectedArrayItem];
+    this.updateView(this.title);
+  }
+
+  toggleSelectedItem(itemIndex: any) {
+    console.log(`[${this.title}#toggleSelectedItem] itemIndex`, itemIndex);
+
+    if (this.selectedArrayItem === itemIndex) {
+      this.selectedArrayItem = null;
+    } else {
+      this.selectedArrayItem = itemIndex;
+    }
   }
 }
