@@ -27,12 +27,8 @@
       align-items: center;
       justify-content: space-between;
 
-      img {
-        width: 35%;
-        height: 35%;
-      }
-
       input {
+        background: $light;
         color: $secondary;
         width: 100%;
         height: 50%;
@@ -42,10 +38,38 @@
       }
 
       button {
-        width: 50%;
-        height: 50%;
-        font-size: clamp(1vmax, 1vw, 1rem);
-        background: $success;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30%;
+        height: 65%;
+        // font-size: clamp(1vmax, 1vw, 1rem);
+        background: $secondary;
+
+        img {
+          width: 90%;
+          height: 90%;
+          background: none;
+          // object-fit: cover;
+          filter: invert(1);
+        }
+      }
+    }
+
+    #buttonsDiv-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 5%;
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        // height: 65%;
+        background: $secondary;
       }
     }
 
@@ -69,7 +93,7 @@
         display: flex;
         align-items: center;
         & > * {
-          background: $danger;
+          background: $medium;
           color: $light;
           font-weight: bold;
         }
@@ -80,23 +104,47 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          font-size: clamp(1vmax, 1vw, 1rem);
         }
       }
 
       #dataRow-wrapper {
-        overflow-y: scroll;
+        // overflow-y: scroll;
+        overflow-y: auto;
         width: 100%;
         height: 90%;
+
+        * {
+          background: $light;
+          color: $medium;
+        }
       }
 
       .dataRow {
         width: 100%;
         height: 10%;
+        min-height: 10%;
+        max-height: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &[isSelected="true"] {
+          &,
+          * {
+            background: $secondary !important;
+            color: $light !important;
+          }
+        }
+
+        span {
+          font-size: clamp(1vmax, 1vw, 1rem);
+          text-align: center;
+        }
       }
     }
 
     button {
-      background: $success;
+      background: $secondary;
     }
   }
 
