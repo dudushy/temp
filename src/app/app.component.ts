@@ -15,6 +15,9 @@ export class AppComponent {
 
   window = window;
 
+  exampleArray: any [];
+  selectedArrayItem: any = null;
+
   constructor(
     public router: Router,
     private cdr: ChangeDetectorRef,
@@ -37,6 +40,14 @@ export class AppComponent {
     this.window.onload = () => {
       console.log(`[${this.title}#window.onload]`);
     };
+
+    this.exampleArray = [
+      { os: 1, alias: 'one', date: 'one', oi: 'one', xau: 'one' },
+      { os: 2, alias: 'tchu', date: 'tchu', oi: 'tchu', xau: 'tchu' },
+      { os: 3, alias: 'three', date: 'three', oi: 'three', xau: 'three' },
+      { os: 4, alias: 'four', date: 'four', oi: 'four', xau: 'four' },
+    ];
+    console.log(`[${this.title}#constructor] exampleArray`, this.exampleArray);
   }
 
   updateView(from: string) {
@@ -45,4 +56,19 @@ export class AppComponent {
   }
 
   defaultOrder() { return 0; }
+
+  addRecord() {
+    console.log(`[${this.title}#addRecord]`);
+
+    const searchBarInput = document.getElementById('searchBar-input') as HTMLInputElement;
+    console.log(`[${this.title}#addRecord] searchBarInput`, searchBarInput);
+
+    if (!searchBarInput) return;
+
+    console.log(`[${this.title}#addRecord] searchBarInput.value`, searchBarInput.value);
+  }
+
+  removeRecord() {
+    console.log(`[${this.title}#removeRecord]`);
+  }
 }
