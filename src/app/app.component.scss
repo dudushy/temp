@@ -28,31 +28,62 @@
       justify-content: space-between;
 
       img {
-        width: 30%;
-        height: 30%;
+        width: 35%;
+        height: 35%;
       }
 
       input {
         color: $secondary;
+        width: 100%;
+        height: 50%;
         &::placeholder {
           color: $secondary;
         }
       }
 
       button {
+        width: 50%;
+        height: 50%;
+        font-size: clamp(1vmax, 1vw, 1rem);
         background: $success;
       }
     }
 
-    table {
+    #arrayDiv {
       width: 100%;
-      height: auto;
-      border-collapse: collapse;
+      height: 100%;
+      // height: auto;
+      overflow: hidden;
 
-      #titleRow > * {
-        background: $danger;
-        color: $light;
-        font-weight: bold;
+      .arrayDivRow {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-around;
+      }
+
+      #titleRow {
+        width: 100%;
+        height: 10%;
+        display: flex;
+        align-items: center;
+        & > * {
+          background: $danger;
+          color: $light;
+          font-weight: bold;
+        }
+      }
+
+      #dataRow-wrapper {
+        overflow-y: scroll;
+        width: 100%;
+        height: 90%;
+      }
+
+      .dataRow {
+        width: 100%;
+        height: 10%;
       }
     }
 
