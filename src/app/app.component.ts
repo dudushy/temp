@@ -97,6 +97,8 @@ export class AppComponent {
     } else {
       this.selectedArrayItem = itemIndex;
     }
+
+    this.updateView(this.title);
   }
 
   openPdf() {
