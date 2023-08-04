@@ -36,12 +36,14 @@
 
 <div *ngIf="screenMode == 'step2'" id="selectDiv-wrapper">
   <div id="galleryDiv">
-    <div *ngFor="let item of exampleArray | keyvalue : defaultOrder" class="galleryItem" id="galleryItem-{{item.key}}" [attr.isSelected]="item.key == selectedGalleryItem" (click)="toggleSelectedGalleryItem(item.key)">
+    <div *ngFor="let item of exampleArray | keyvalue : defaultOrder" class="galleryItem" id="galleryItem-{{item.key}}" [attr.isRunning]="item.value.isRunning == 1" [attr.isSelected]="item.key == selectedGalleryItem" (click)="toggleSelectedGalleryItem(item.key)">
       <img [src]="item.value['blob']">
 
       <span>{{item.value['os']}}</span>
       <span>{{item.value['op']}}</span>
-      <span>{{item.value['budget']}}</span>
+      <span>${{item.value['budget']}}</span>
+
+      <img class="pdfFloatButton" src="assets/svgs/document.svg" (click)="openPdf(item.value['blob'])">
     </div>
   </div>
 
@@ -57,8 +59,8 @@
       </div>
     </div>
 
-    <div id="toolbar-right">
-      <button id="pdfButton" (click)="openPdf(exampleArray[selectedGalleryItem].blob)">PDF</button>
+    <div id="toolbar-right" *ngIf="exampleArray[selectedGalleryItem]">
+      <button id="pdfButton" [disabled]="!exampleArray[selectedGalleryItem].blob" (click)="openPdf(exampleArray[selectedGalleryItem].blob)">PDF</button>
     </div>
   </div>
 </div>
