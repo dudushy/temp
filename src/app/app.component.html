@@ -1,4 +1,4 @@
-<div id="searchDiv-wrapper">
+<div *ngIf="screenMode == 'step1'" id="searchDiv-wrapper">
   <div id="sideMenu">
     <div id="searchBar-wrapper">
       <input id="searchBar-input" type="text" placeholder="Search">
@@ -15,27 +15,50 @@
     <div id="arrayDiv">
       <div id="titleRow" class="arrayDivRow">
         <span>OS</span>
-        <span>ALIAS</span>
-        <span>DATE</span>
-        <span>OI</span>
-        <span>XAU</span>
+        <span>OP</span>
       </div>
 
       <div id="dataRow-wrapper">
         <div *ngFor="let item of exampleArray | keyvalue : defaultOrder" class="dataRow arrayDivRow" id="dataRowItem-{{item.key}}" [attr.isSelected]="item.key == selectedArrayItem" (click)="toggleSelectedItem(item.key)">
           <span>{{item.value['os']}}</span>
-          <span>{{item.value['alias']}}</span>
-          <span>{{item.value['date']}}</span>
-          <span>{{item.value['oi']}}</span>
-          <span>{{item.value['xau']}}</span>
+          <span>{{item.value['op']}}</span>
         </div>
       </div>
     </div>
 
-    <button id="downloadButton">DOWNLOAD</button>
+    <button id="downloadButton" (click)="setScreenMode('step2')">START</button>
   </div>
 
   <div id="imagePreview-wrapper">
-    <img *ngIf="selectedArrayItem != null && exampleArray[selectedArrayItem].blob" id="imagePreview" [src]="exampleArray[selectedArrayItem].blob" alt="image-preview" (click)="openPdf()">
+    <img *ngIf="selectedArrayItem != null && exampleArray[selectedArrayItem].blob" id="imagePreview" [src]="exampleArray[selectedArrayItem].blob" alt="image-preview" (click)="openPdf(exampleArray[selectedArrayItem].blob)">
+  </div>
+</div>
+
+<div *ngIf="screenMode == 'step2'" id="selectDiv-wrapper">
+  <div id="galleryDiv">
+    <div *ngFor="let item of exampleArray | keyvalue : defaultOrder" class="galleryItem" id="galleryItem-{{item.key}}" [attr.isSelected]="item.key == selectedGalleryItem" (click)="toggleSelectedGalleryItem(item.key)">
+      <img [src]="item.value['blob']">
+
+      <span>{{item.value['os']}}</span>
+      <span>{{item.value['op']}}</span>
+      <span>{{item.value['budget']}}</span>
+    </div>
+  </div>
+
+  <div id="toolbar">
+    <div id="toolbar-left">
+      <input id="os-input" type="text" disabled>
+
+      <input id="amount-input" type="text">
+
+      <div id="button-wrapper">
+        <button id="cancelButton" (click)="setScreenMode('step1')">CANCEL</button>
+        <button id="sendButton" (click)="run(exampleArray[selectedGalleryItem])">SEND</button>
+      </div>
+    </div>
+
+    <div id="toolbar-right">
+      <button id="pdfButton" (click)="openPdf(exampleArray[selectedGalleryItem].blob)">PDF</button>
+    </div>
   </div>
 </div>
