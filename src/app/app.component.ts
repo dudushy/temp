@@ -15,7 +15,7 @@ export class AppComponent {
 
   window = window;
 
-  screenMode: any = 'step2';
+  screenMode: any = 'step1';
   exampleArray: any[];
   selectedArrayItem: any = null;
   selectedGalleryItem: any = null;
@@ -44,10 +44,10 @@ export class AppComponent {
     };
 
     this.exampleArray = [
-      { os: 1, alias: 'one', op: 'one', blob: 'assets/imgs/gear1.jpg', budget: 1337 },
-      { os: 2, alias: 'tchu', op: 'tchu', blob: 'assets/imgs/gear2.png', budget: 69 },
-      { os: 3, alias: 'treix', op: 'treix', blob: 'assets/imgs/gear3.jpg', budget: 1 },
-      { os: 4, alias: 'quadraddo', op: 'quadraddo', blob: 'assets/imgs/gear4.jpg', budget: 0 },
+      { os: 1, alias: 'one', op: 'one', blob: 'assets/imgs/gear1.jpg', budget: 1337, isRunning: 0 },
+      { os: 2, alias: 'tchu', op: 'tchu', blob: 'assets/imgs/gear2.png', budget: 69, isRunning: 0 },
+      { os: 3, alias: 'treix', op: 'treix', blob: 'assets/imgs/gear3.jpg', budget: 1, isRunning: 0 },
+      { os: 4, alias: 'quadraddo', op: 'quadraddo', blob: 'assets/imgs/gear4.jpg', budget: 0, isRunning: 1 },
     ];
     console.log(`[${this.title}#constructor] exampleArray`, this.exampleArray);
   }
@@ -76,6 +76,7 @@ export class AppComponent {
       op: searchBarInput.value,
       blob: 'https://png.pngtree.com/element_our/20190531/ourmid/pngtree-gear-tool-image_1276937.jpg',
       budget: 2,
+      isRunning: 0,
     });
 
     console.log(`[${this.title}#addRecord] exampleArray`, this.exampleArray);
@@ -113,6 +114,8 @@ export class AppComponent {
 
   toggleSelectedGalleryItem(itemIndex: any) {
     console.log(`[${this.title}#toggleSelectedGalleryItem] itemIndex`, itemIndex);
+
+    if (this.exampleArray[itemIndex].isRunning) return;
 
     if (this.selectedGalleryItem === itemIndex) {
       this.selectedGalleryItem = null;
