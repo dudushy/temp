@@ -3,7 +3,7 @@
     <div id="searchBar-wrapper">
       <input id="searchBar-input" type="text" placeholder="Search">
       <button id="searchButton">
-        <img id="searchIcon" src="assets/svgs/search.svg" alt="search-icon">
+        <img id="searchIcon" src="assets/SVGs/search.svg" alt="search-icon">
       </button>
     </div>
 
@@ -30,20 +30,20 @@
   </div>
 
   <div id="imagePreview-wrapper">
-    <img *ngIf="selectedArrayItem != null && exampleArray[selectedArrayItem].blob" id="imagePreview" [src]="exampleArray[selectedArrayItem].blob" alt="image-preview" (click)="openPdf(exampleArray[selectedArrayItem].blob)">
+    <img *ngIf="selectedArrayItem != null && exampleArray[selectedArrayItem].img" id="imagePreview" [src]="exampleArray[selectedArrayItem].img" alt="image-preview" (click)="openPdf(exampleArray[selectedArrayItem].pdf)">
   </div>
 </div>
 
 <div *ngIf="screenMode == 'step2'" id="selectDiv-wrapper">
   <div id="galleryDiv">
     <div *ngFor="let item of exampleArray | keyvalue : defaultOrder" class="galleryItem" id="galleryItem-{{item.key}}" [attr.isRunning]="item.value.isRunning == 1" [attr.isSelected]="item.key == selectedGalleryItem" (click)="toggleSelectedGalleryItem(item.key)">
-      <img [src]="item.value['blob']">
+      <img [src]="item.value['img']">
 
       <span>{{item.value['os']}}</span>
       <span>{{item.value['op']}}</span>
       <span>${{item.value['budget']}}</span>
 
-      <img class="pdfFloatButton" src="assets/svgs/document.svg" (click)="openPdf(item.value['blob'])">
+      <img *ngIf="item.value['pdf']" class="pdfFloatButton" src="assets/SVGs/document.svg" (click)="openPdf(item.value['pdf'])">
     </div>
   </div>
 
@@ -60,7 +60,7 @@
     </div>
 
     <div id="toolbar-right" *ngIf="exampleArray[selectedGalleryItem]">
-      <button id="pdfButton" [disabled]="!exampleArray[selectedGalleryItem].blob" (click)="openPdf(exampleArray[selectedGalleryItem].blob)">PDF</button>
+      <button id="pdfButton" [disabled]="!exampleArray[selectedGalleryItem].img" (click)="openPdf(exampleArray[selectedGalleryItem].pdf)">PDF</button>
     </div>
   </div>
 </div>
