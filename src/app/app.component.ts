@@ -44,10 +44,10 @@ export class AppComponent {
     };
 
     this.exampleArray = [
-      { os: 1, alias: 'one', op: 'one', blob: 'assets/imgs/gear1.jpg', budget: 1337, isRunning: 0 },
-      { os: 2, alias: 'tchu', op: 'tchu', blob: 'assets/imgs/gear2.png', budget: 69, isRunning: 0 },
-      { os: 3, alias: 'treix', op: 'treix', blob: 'assets/imgs/gear3.jpg', budget: 1, isRunning: 0 },
-      { os: 4, alias: 'quadraddo', op: 'quadraddo', blob: 'assets/imgs/gear4.jpg', budget: 0, isRunning: 1 },
+      { os: 1, alias: 'one', op: 'one', img: 'assets/IMGs/gear1.jpg', pdf: null, budget: 1337, isRunning: 0 },
+      { os: 2, alias: 'tchu', op: 'tchu', img: 'assets/IMGs/gear2.png', pdf: 'assets/PDFs/dummy.pdf', budget: 69, isRunning: 0 },
+      { os: 3, alias: 'treix', op: 'treix', img: 'assets/IMGs/gear3.jpg', pdf: 'assets/PDFs/sample.pdf', budget: 1, isRunning: 0 },
+      { os: 4, alias: 'quadraddo', op: 'quadraddo', img: 'assets/IMGs/gear4.jpg', pdf: 'assets/PDFs/sample.pdf', budget: 0, isRunning: 1 },
     ];
     console.log(`[${this.title}#constructor] exampleArray`, this.exampleArray);
   }
@@ -74,7 +74,8 @@ export class AppComponent {
     this.exampleArray.push({
       os: this.exampleArray.length + 1,
       op: searchBarInput.value,
-      blob: 'https://png.pngtree.com/element_our/20190531/ourmid/pngtree-gear-tool-image_1276937.jpg',
+      img: 'https://png.pngtree.com/element_our/20190531/ourmid/pngtree-gear-tool-image_1276937.jpg',
+      pdf: 'assets/PDFs/sample.pdf',
       budget: 2,
       isRunning: 0,
     });
@@ -140,12 +141,16 @@ export class AppComponent {
   openPdf(url) {
     console.log(`[${this.title}#openPdf] url`, url);
 
-    window.open('assets/pdfs/sample.pdf', '_blank');
+    if (url === null) { alert('PDF not found!'); return; }
+
+    // window.open('assets/PDFs/sample.pdf', '_blank');
+    window.open(url, '_blank');
 
     // const link = document.createElement('a');
     // link.download = 'filename.pdf';
     // link.target = 'blank';
     // link.href = 'assets/pdfs/sample.pdf';
+    // link.href = url;
     // link.click();
   }
 
