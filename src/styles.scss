@@ -29,9 +29,6 @@ html, body, app-root {
 * {
   font-size: clamp(2vmax, 2vw, 1rem);
   font-family: monospace;
-  transition: 50ms all;
-  background: $primary;
-  color: $light;
 }
 
 //! CUSTOM SCROLLBAR [START]
