@@ -197,7 +197,7 @@
     .galleryItem {
       position: relative;
       background: $light;
-      border: 5px solid $medium;
+      border: 10px solid $medium;
       border-radius: 20px;
       margin: 1%;
       padding: 1%;
@@ -219,7 +219,7 @@
         cursor: pointer;
       }
       &[isRunning="true"] {
-        border: 5px solid $success;
+        border: 10px solid $success;
         cursor: not-allowed;
       }
       &[isSelected="true"] {
