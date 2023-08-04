@@ -150,7 +150,18 @@ export class AppComponent {
   }
 
   run(nametag: any) {
-    console.log(`[${this.title}#run] nametag`, nametag);
+    console.log(`[${this.title}#run] (BEFORE) nametag`, nametag);
+
+    if (!nametag) return;
+
+    const amountInput = document.getElementById('amount-input') as HTMLInputElement;
+    console.log(`[${this.title}#fillFields] amountInput`, amountInput);
+
+    if (!amountInput) return;
+
+    nametag['amount'] = parseInt(amountInput.value);
+
+    console.log(`[${this.title}#run] (AFTER) nametag`, nametag);
   }
 
   fillFields(item: any) {
