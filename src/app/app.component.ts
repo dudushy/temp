@@ -15,8 +15,10 @@ export class AppComponent {
 
   window = window;
 
+  screenMode: any = 'step2';
   exampleArray: any[];
   selectedArrayItem: any = null;
+  selectedGalleryItem: any = null;
 
   constructor(
     public router: Router,
@@ -42,10 +44,10 @@ export class AppComponent {
     };
 
     this.exampleArray = [
-      { os: 1, alias: 'one', date: 'one', oi: 'one', xau: 'one', blob: 'assets/imgs/gear1.jpg' },
-      { os: 2, alias: 'tchu', date: 'tchu', oi: 'tchu', xau: 'tchu', blob: 'assets/imgs/gear2.png' },
-      { os: 3, alias: 'treix', date: 'treix', oi: 'treix', xau: 'treix', blob: 'assets/imgs/gear3.jpg' },
-      { os: 4, alias: 'quadraddo', date: 'quadraddo', oi: 'quadraddo', xau: 'quadraddo', blob: 'assets/imgs/gear4.jpg' },
+      { os: 1, alias: 'one', op: 'one', blob: 'assets/imgs/gear1.jpg', budget: 1337 },
+      { os: 2, alias: 'tchu', op: 'tchu', blob: 'assets/imgs/gear2.png', budget: 69 },
+      { os: 3, alias: 'treix', op: 'treix', blob: 'assets/imgs/gear3.jpg', budget: 1 },
+      { os: 4, alias: 'quadraddo', op: 'quadraddo', blob: 'assets/imgs/gear4.jpg', budget: 0 },
     ];
     console.log(`[${this.title}#constructor] exampleArray`, this.exampleArray);
   }
@@ -71,11 +73,9 @@ export class AppComponent {
 
     this.exampleArray.push({
       os: this.exampleArray.length + 1,
-      alias: searchBarInput.value,
-      date: searchBarInput.value,
-      oi: searchBarInput.value,
-      xau: searchBarInput.value,
-      blob: 'https://png.pngtree.com/element_our/20190531/ourmid/pngtree-gear-tool-image_1276937.jpg'
+      op: searchBarInput.value,
+      blob: 'https://png.pngtree.com/element_our/20190531/ourmid/pngtree-gear-tool-image_1276937.jpg',
+      budget: 2,
     });
 
     console.log(`[${this.title}#addRecord] exampleArray`, this.exampleArray);
@@ -90,7 +90,11 @@ export class AppComponent {
 
     delete this.exampleArray[this.selectedArrayItem];
 
+    this.exampleArray = this.exampleArray.filter((item: any) => { if (item) return item; });
+
     console.log(`[${this.title}#removeRecord] exampleArray`, this.exampleArray);
+
+    this.selectedArrayItem = null;
 
     this.updateView(this.title);
   }
@@ -107,20 +111,55 @@ export class AppComponent {
     this.updateView(this.title);
   }
 
-  openPdf() {
-    console.log(`[${this.title}#openPdf]`);
+  toggleSelectedGalleryItem(itemIndex: any) {
+    console.log(`[${this.title}#toggleSelectedGalleryItem] itemIndex`, itemIndex);
 
-    // window.open('https://www.africau.edu/images/default/sample.pdf', '_blank');
+    if (this.selectedGalleryItem === itemIndex) {
+      this.selectedGalleryItem = null;
+    } else {
+      this.selectedGalleryItem = itemIndex;
+    }
+
+    this.fillFields(this.exampleArray[this.selectedGalleryItem]);
+
+    this.updateView(this.title);
+  }
+
+  setScreenMode(mode: any) {
+    console.log(`[${this.title}#setScreenMode] mode`, mode);
+
+    this.screenMode = mode;
+    console.log(`[${this.title}#setScreenMode] screenMode`, this.screenMode);
+
+    this.updateView(this.title);
+  }
+
+  openPdf(url) {
+    console.log(`[${this.title}#openPdf] url`, url);
+
     window.open('assets/pdfs/sample.pdf', '_blank');
-
-    // const pdfWindow = window.open('', '_blank');
-    // pdfWindow.document.write('<iframe width="100%" height="100%" src="assets/pdf/01.pdf"></iframe>');
-    // pdfWindow.document.write('https://www.africau.edu/images/default/sample.pdf');
 
     // const link = document.createElement('a');
     // link.download = 'filename.pdf';
     // link.target = 'blank';
     // link.href = 'assets/pdfs/sample.pdf';
     // link.click();
+  }
+
+  run(nametag: any) {
+    console.log(`[${this.title}#run] nametag`, nametag);
+  }
+
+  fillFields(item: any) {
+    console.log(`[${this.title}#fillFields] item`, item);
+
+    const OSInput = document.getElementById('os-input') as HTMLInputElement;
+    console.log(`[${this.title}#fillFields] OSInput`, OSInput);
+
+    if (!OSInput) return;
+
+    OSInput.value = item ? item.op : '';
+
+    this.updateView(this.title);
   }
 }
