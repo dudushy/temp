@@ -39,9 +39,9 @@
     <div *ngFor="let item of exampleArray | keyvalue : defaultOrder" class="galleryItem" id="galleryItem-{{item.key}}" [attr.isRunning]="item.value.isRunning == 1" [attr.isSelected]="item.key == selectedGalleryItem" (click)="toggleSelectedGalleryItem(item.key)">
       <img [src]="item.value['img']">
 
-      <span>{{item.value['os']}}</span>
-      <span>{{item.value['op']}}</span>
-      <span>${{item.value['budget']}}</span>
+      <span class="osSpan">{{item.value['os']}}</span>
+      <span class="opSpan">{{item.value['op']}}</span>
+      <span class="budgetSpan">${{item.value['budget']}}</span>
 
       <img *ngIf="item.value['pdf']" class="pdfFloatButton" src="assets/SVGs/document.svg" (click)="openPdf(item.value['pdf'])">
     </div>

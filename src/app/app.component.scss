@@ -197,19 +197,13 @@
     .galleryItem {
       position: relative;
       background: $light;
-      border: 10px solid $medium;
-      border-radius: 20px;
+      border: 2px solid $medium;
+      border-radius: 5px;
       margin: 1%;
       padding: 1%;
-      width: 10%;
-      // height: 100%;
-      height: 30%;
-      // height: inherit;
-      // height: min-content;
-      // height: fit-content;
-      // max-height: max-content;
-      // max-height: inherit;
-      // height: max-content;
+      // width: 10%;
+      width: 12vw;
+      height: 12vw;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -219,7 +213,7 @@
         cursor: pointer;
       }
       &[isRunning="true"] {
-        border: 10px solid $success;
+        border: 2px solid $success;
         cursor: not-allowed;
       }
       &[isSelected="true"] {
@@ -235,22 +229,40 @@
       }
 
       img {
-        width: 25%;
-        height: 25%;
+        // width: 25%;
+        // height: 25%;
+        height: 3vw;
         background: none;
         object-fit: contain;
       }
 
       span {
         text-align: center;
+        max-width: 100%;
+        max-height: 100%;
+        word-break: break-all;
+        text-overflow: ellipsis;
+      }
+
+      .osSpan {
+        font-size: 2vw;
+      }
+
+      .opSpan {
+        font-size: 1.4vw;
+      }
+
+      .budgetSpan {
+        font-size: 1.8vw;
       }
 
       .pdfFloatButton {
         position: absolute;
         top: 5%;
         left: 5%;
-        width: 15%;
-        height: 15%;
+        // width: 15%;
+        // height: 15%;
+        height: 1.5vw;
         background: $danger !important;
         padding: 3.5%;
         border-radius: 50%;
