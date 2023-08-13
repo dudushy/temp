@@ -1,4 +1,4 @@
-#! title preset
+#! title preset aaaaa
 TITLE='[build_n_deploy.sh]'
 
 echo $TITLE 'setup config...'
