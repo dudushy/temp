@@ -1,4 +1,6 @@
 :root {
+  --responsiveUnit: 1vmax;
+
   --text: #ffffff;
   --wall: #000000;
 
@@ -11,6 +13,18 @@
   --dark: #222428;
   --medium: #92949c;
   --light: #f4f5f8;
+}
+
+@media (orientation: portrait) {
+  :root {
+    --responsiveUnit: 1vmin;
+  }
+}
+
+@media (orientation: landscape) {
+  :root {
+    --responsiveUnit: 1vmax;
+  }
 }
 
 body {
@@ -31,5 +45,6 @@ span#heart {
 /* - */
 
 #CSS-debug {
-  font-size: calc(var(--responsiveUnit) * 1);
+  /* font-size: calc(var(--responsiveUnit) * 1); */
+  font-size: calc(var(--responsiveUnit) * 3.5);
 }
