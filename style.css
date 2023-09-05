@@ -1,5 +1,6 @@
 :root {
   --responsiveUnit: 1vmax;
+  --windowOrientation: landscape;
 
   --text: #ffffff;
   --wall: #000000;
@@ -18,12 +19,14 @@
 @media (orientation: portrait) {
   :root {
     --responsiveUnit: 1vmin;
+    --windowOrientation: portrait;
   }
 }
 
 @media (orientation: landscape) {
   :root {
     --responsiveUnit: 1vmax;
+    --windowOrientation: landscape;
   }
 }
 
@@ -44,7 +47,10 @@ span#heart {
 
 /* - */
 
+#CSS-responsive {
+  font-size: calc(var(--responsiveUnit) * 1);
+}
+
 #CSS-debug {
-  /* font-size: calc(var(--responsiveUnit) * 1); */
   font-size: calc(var(--responsiveUnit) * 3.5);
 }

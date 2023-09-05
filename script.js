@@ -21,40 +21,15 @@ function updateRootStyles() {
     const windowHeight = window.innerHeight;
     console.log(`[${TITLE}#updateRootStyles] windowHeight`, windowHeight);
 
-    let windowOrientation = 'none';
-    if (windowHeight == windowWidth) windowOrientation = 'square';
-    else if (windowHeight > windowWidth) windowOrientation = 'portrait';
-    else windowOrientation = 'landscape';
-    console.log(`[${TITLE}#updateRootStyles] windowOrientation`, windowOrientation);
-
-    const responsiveCalcs = {
-      '/max': Math.round(Math.min(windowWidth, windowHeight) / Math.max(windowWidth, windowHeight) * 100),
-      '%max': Math.min(windowWidth, windowHeight) % Math.max(windowWidth, windowHeight),
-      '/min': Math.round(Math.max(windowWidth, windowHeight) / Math.min(windowWidth, windowHeight) * 100),
-      '%min': Math.max(windowWidth, windowHeight) % Math.min(windowWidth, windowHeight),
-    };
-    console.log(`[${TITLE}#updateRootStyles] responsiveCalcs`, responsiveCalcs, {
-      '/max': `${Math.min(windowWidth, windowHeight)} / ${Math.max(windowWidth, windowHeight)} = ${Math.round(Math.min(windowWidth, windowHeight) / Math.max(windowWidth, windowHeight) * 100)}`,
-      '%max': `${Math.min(windowWidth, windowHeight)} % ${Math.max(windowWidth, windowHeight)} = ${Math.min(windowWidth, windowHeight) % Math.max(windowWidth, windowHeight)}`,
-      '/min': `${Math.max(windowWidth, windowHeight)} / ${Math.min(windowWidth, windowHeight)} = ${Math.round(Math.max(windowWidth, windowHeight) / Math.min(windowWidth, windowHeight) * 100)}`,
-      '%min': `${Math.max(windowWidth, windowHeight)} % ${Math.min(windowWidth, windowHeight)} = ${Math.max(windowWidth, windowHeight) % Math.min(windowWidth, windowHeight)}`,
-    });
-
-    // const responsiveUnit = responsiveCalcs['/min'] - responsiveCalcs['/max'];
-    const responsiveUnit = responsiveCalcs['/min'] / responsiveCalcs['/max'];
-    console.log(`[${TITLE}#updateRootStyles] responsiveUnit`, responsiveUnit);
-
-    root.style.setProperty('--windowOrientation', windowOrientation);
     root.style.setProperty('--windowWidth', `${windowWidth}px`);
     root.style.setProperty('--windowHeight', `${windowHeight}px`);
-    // root.style.setProperty('--responsiveUnit', `${responsiveUnit}px`);
 
-    const debugElement = document.getElementById('CSS-debug');
-    console.log(`[${TITLE}#updateRootStyles] debugElement`, debugElement);
+    const responsiveElement = document.getElementById('CSS-responsive');
+    console.log(`[${TITLE}#updateRootStyles] responsiveElement`, responsiveElement);
 
-    if (!debugElement) return;
+    if (!responsiveElement) return;
 
-    const computedStyle = window.getComputedStyle(debugElement);
+    const computedStyle = window.getComputedStyle(responsiveElement);
     console.log(`[${TITLE}#updateRootStyles] computedStyle`, computedStyle);
 
     const elementFontSize = computedStyle.getPropertyValue('font-size');
@@ -71,6 +46,11 @@ function updateRootStyles() {
 
     const elementResponsiveUnit = computedStyle.getPropertyValue('--responsiveUnit');
     console.log(`[${TITLE}#updateRootStyles] elementResponsiveUnit`, elementResponsiveUnit);
+
+    const debugElement = document.getElementById('CSS-debug');
+    console.log(`[${TITLE}#updateRootStyles] debugElement`, debugElement);
+
+    if (!debugElement) return;
 
     debugElement.innerHTML = `[${elementWindowWidth}, ${elementWindowHeight}] - ${elementOrientation} (${elementResponsiveUnit}) <b>${elementFontSize}</b>`;
 }
