@@ -27,15 +27,23 @@ function updateRootStyles() {
     else windowOrientation = 'landscape';
     console.log(`[${TITLE}#updateRootStyles] windowOrientation`, windowOrientation);
 
-    const responsiveUnit = Math.max(windowWidth, windowHeight) % Math.min(windowWidth, windowHeight);
+    const responsiveUnit = {
+      '/max': Math.round(Math.min(windowWidth, windowHeight) / Math.max(windowWidth, windowHeight) * 100),
+      '%max': Math.min(windowWidth, windowHeight) % Math.max(windowWidth, windowHeight),
+      '/min': Math.round(Math.max(windowWidth, windowHeight) / Math.min(windowWidth, windowHeight) * 100),
+      '%min': Math.max(windowWidth, windowHeight) % Math.min(windowWidth, windowHeight),
+    };
     console.log(`[${this.title}#updateRootStyles] responsiveUnit`, responsiveUnit, {
-      ratio: `${Math.max(windowWidth, windowHeight)} / ${Math.min(windowWidth, windowHeight)} = ${Math.max(windowWidth, windowHeight) % Math.min(windowWidth, windowHeight)}`,
+      '/max': `${Math.min(windowWidth, windowHeight)} / ${Math.max(windowWidth, windowHeight)} = ${Math.round(Math.min(windowWidth, windowHeight) / Math.max(windowWidth, windowHeight) * 100)}`,
+      '%max': `${Math.min(windowWidth, windowHeight)} % ${Math.max(windowWidth, windowHeight)} = ${Math.min(windowWidth, windowHeight) % Math.max(windowWidth, windowHeight)}`,
+      '/min': `${Math.max(windowWidth, windowHeight)} / ${Math.min(windowWidth, windowHeight)} = ${Math.round(Math.max(windowWidth, windowHeight) / Math.min(windowWidth, windowHeight) * 100)}`,
+      '%min': `${Math.max(windowWidth, windowHeight)} % ${Math.min(windowWidth, windowHeight)} = ${Math.max(windowWidth, windowHeight) % Math.min(windowWidth, windowHeight)}`,
     });
 
     root.style.setProperty('--windowOrientation', windowOrientation);
     root.style.setProperty('--windowWidth', `${windowWidth}px`);
     root.style.setProperty('--windowHeight', `${windowHeight}px`);
-    root.style.setProperty('--responsiveUnit', `${responsiveUnit}px`);
+    root.style.setProperty('--responsiveUnit', `${responsiveUnit['/max']}px`);
 
     const debugElement = document.getElementById('CSS-debug');
     console.log(`[${TITLE}#updateRootStyles] debugElement`, debugElement);

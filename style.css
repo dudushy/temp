@@ -31,5 +31,5 @@ span#heart {
 /* - */
 
 #CSS-debug {
-  font-size: calc(var(--responsiveUnit) * 0.24);
+  font-size: calc(var(--responsiveUnit) * 1);
 }
