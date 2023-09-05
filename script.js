@@ -8,17 +8,17 @@ window.addEventListener('resize', () => {
     console.log(`[${TITLE}] window.resize`);
 
     updateRootStyles();
-});			
+});
 
 function updateRootStyles() {
     const root = document.documentElement;
     console.log(`[${TITLE}#updateRootStyles] root`, root);
     console.log(`[${TITLE}#updateRootStyles] root.style`, root.style);
 
-    const windowWidth = root.clientWidth;
+    const windowWidth = window.screen.width;
     console.log(`[${TITLE}#updateRootStyles] windowWidth`, windowWidth);
 
-    const windowHeight = root.clientHeight;
+    const windowHeight = window.screen.height;
     console.log(`[${TITLE}#updateRootStyles] windowHeight`, windowHeight);
 
     root.style.setProperty('--windowWidth', `${windowWidth}px`);
