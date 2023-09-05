@@ -1,0 +1,35 @@
+:root {
+  --text: #ffffff;
+  --wall: #000000;
+
+  --primary: #3880ff;
+  --secondary: #3dc2ff;
+  --tertiary: #5260ff;
+  --success: #2dd36f;
+  --warning: #ffc409;
+  --danger: #eb445a;
+  --dark: #222428;
+  --medium: #92949c;
+  --light: #f4f5f8;
+}
+
+body {
+  color: var(--text);
+  background-color: var(--wall);
+  text-align: center;
+  font-family: monospace;
+}
+
+a {
+  color: var(--tertiary);
+}
+
+span#heart {
+  color: var(--danger);
+}
+
+/* - */
+
+#CSS-debug {
+  font-size: calc(var(--responsiveUnit) * 0.24);
+}
