@@ -15,10 +15,10 @@ function updateRootStyles() {
     console.log(`[${TITLE}#updateRootStyles] root`, root);
     console.log(`[${TITLE}#updateRootStyles] root.style`, root.style);
 
-    const windowWidth = window.screen.width;
+    const screenWidth = Math.min(window.innerWidth, window.screen.width);
     console.log(`[${TITLE}#updateRootStyles] windowWidth`, windowWidth);
 
-    const windowHeight = window.screen.height;
+    const screenHeight = Math.min(window.innerHeight, window.screen.height);
     console.log(`[${TITLE}#updateRootStyles] windowHeight`, windowHeight);
 
     root.style.setProperty('--windowWidth', `${windowWidth}px`);
